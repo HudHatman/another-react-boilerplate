@@ -1,6 +1,7 @@
+@use "sass:color";
 //colors
 
-$logoBackgroundColor: lighten(#37474f, 10%);
+$logoBackgroundColor: color.adjust(#37474f, $lightness: 10%);
 $SIDEBAR_BACKGROUND_COLOR: #263238;
 
 $color1: #50514f;
@@ -17,54 +18,54 @@ $danger: rgb(250, 137, 107);
 $defaultTextColor: #111;
 $DEFAULT_FONT_SIZE: 13px;
 
-$default_DARKEN_X1: darken($default, 10);
-$primary_DARKEN_X1: darken($primary, 10);
-$secondary_DARKEN_X1: lighten($secondary, 10);
-$info_DARKEN_X1: darken($info, 10);
-$warning_DARKEN_X1: darken($warning, 10);
-$success_DARKEN_X1: darken($success, 10);
-$danger_DARKEN_X1: darken($danger, 10);
+$default_DARKEN_X1: color.adjust($default, $lightness: 10);
+$primary_DARKEN_X1: color.adjust($primary, $lightness: 10);
+$secondary_DARKEN_X1: color.adjust($secondary, $lightness: 10);
+$info_DARKEN_X1: color.adjust($info, $lightness: 10);
+$warning_DARKEN_X1: color.adjust($warning, $lightness: 10);
+$success_DARKEN_X1: color.adjust($success, $lightness: 10);
+$danger_DARKEN_X1: color.adjust($danger, $lightness: 10);
 
-$default_DARKEN_X2: darken($default, 20);
-$primary_DARKEN_X2: darken($primary, 20);
-$secondary_DARKEN_X2: lighten($secondary, 20);
-$info_DARKEN_X2: darken($info, 20);
-$warning_DARKEN_X2: darken($warning, 20);
-$success_DARKEN_X2: darken($success, 20);
-$danger_DARKEN_X2: darken($danger, 20);
+$default_DARKEN_X2: color.adjust($default, $lightness: 20);
+$primary_DARKEN_X2: color.adjust($primary, $lightness: 20);
+$secondary_DARKEN_X2: color.adjust($secondary, $lightness: 20);
+$info_DARKEN_X2: color.adjust($info, $lightness: 20);
+$warning_DARKEN_X2: color.adjust($warning, $lightness: 20);
+$success_DARKEN_X2: color.adjust($success, $lightness: 20);
+$danger_DARKEN_X2: color.adjust($danger, $lightness: 20);
 
-$default_DARKEN_X3: darken($default, 20);
-$primary_DARKEN_X3: darken($primary, 30);
-$secondary_DARKEN_X3: lighten($secondary, 30);
-$info_DARKEN_X3: darken($info, 30);
-$warning_DARKEN_X3: darken($warning, 30);
-$success_DARKEN_X3: darken($success, 30);
-$danger_DARKEN_X3: darken($danger, 30);
+$default_DARKEN_X3: color.adjust($default, $lightness: 20);
+$primary_DARKEN_X3: color.adjust($primary, $lightness: 30);
+$secondary_DARKEN_X3: color.adjust($secondary, $lightness: 30);
+$info_DARKEN_X3: color.adjust($info, $lightness: 30);
+$warning_DARKEN_X3: color.adjust($warning, $lightness: 30);
+$success_DARKEN_X3: color.adjust($success, $lightness: 30);
+$danger_DARKEN_X3: color.adjust($danger, $lightness: 30);
 
-$default_LIGHTEN_X3: lighten($default, 30);
-$primary_LIGHTEN_X3: lighten($primary, 30);
-$secondary_LIGHTEN_X3: lighten($secondary, 30);
-$info_LIGHTEN_X3: lighten($info, 30);
-$warning_LIGHTEN_X3: lighten($warning, 30);
-$success_LIGHTEN_X3: lighten($success, 30);
-$danger_LIGHTEN_X3: lighten($danger, 30);
+$default_LIGHTEN_X3: color.adjust($default, $lightness: 30);
+$primary_LIGHTEN_X3: color.adjust($primary, $lightness: 30);
+$secondary_LIGHTEN_X3: color.adjust($secondary, $lightness: 30);
+$info_LIGHTEN_X3: color.adjust($info, $lightness: 30);
+$warning_LIGHTEN_X3: color.adjust($warning, $lightness: 30);
+$success_LIGHTEN_X3: color.adjust($success, $lightness: 30);
+$danger_LIGHTEN_X3: color.adjust($danger, $lightness: 30);
 
-$default_LIGHTEN_X2: lighten($default, 20);
-$primary_LIGHTEN_X2: lighten($primary, 20);
-$secondary_LIGHTEN_X2: lighten($secondary, 20);
-$info_LIGHTEN_X2: lighten($info, 20);
-$warning_LIGHTEN_X2: lighten($warning, 20);
-$success_LIGHTEN_X2: lighten($success, 20);
-$danger_LIGHTEN_X2: lighten($danger, 20);
+$default_LIGHTEN_X2: color.adjust($default, $lightness: 20);
+$primary_LIGHTEN_X2: color.adjust($primary, $lightness: 20);
+$secondary_LIGHTEN_X2: color.adjust($secondary, $lightness: 20);
+$info_LIGHTEN_X2: color.adjust($info, $lightness: 20);
+$warning_LIGHTEN_X2: color.adjust($warning, $lightness: 20);
+$success_LIGHTEN_X2: color.adjust($success, $lightness: 20);
+$danger_LIGHTEN_X2: color.adjust($danger, $lightness: 20);
 
-$default_LIGHTEN_X1: lighten($default, 10);
-$primary_LIGHTEN_X1: lighten($default, 10);
-$primary_LIGHTEN_X1: lighten($primary, 10);
-$secondary_LIGHTEN_X1: lighten($secondary, 10);
-$info_LIGHTEN_X1: lighten($info, 10);
-$warning_LIGHTEN_X1: lighten($warning, 10);
-$success_LIGHTEN_X1: lighten($success, 10);
-$danger_LIGHTEN_X1: lighten($danger, 10);
+$default_LIGHTEN_X1: color.adjust($default, $lightness: 10);
+$primary_LIGHTEN_X1: color.adjust($default, $lightness: 10);
+$primary_LIGHTEN_X1: color.adjust($primary, $lightness: 10);
+$secondary_LIGHTEN_X1: color.adjust($secondary, $lightness: 10);
+$info_LIGHTEN_X1: color.adjust($info, $lightness: 10);
+$warning_LIGHTEN_X1: color.adjust($warning, $lightness: 10);
+$success_LIGHTEN_X1: color.adjust($success, $lightness: 10);
+$danger_LIGHTEN_X1: color.adjust($danger, $lightness: 10);
 
 $default_text_color: #505050;
 $primary_text_color: #fff;
@@ -74,29 +75,29 @@ $warning_text_color: #fff;
 $success_text_color: #fff;
 $danger_text_color: #fff;
 
-$default_text_color_DARKEN_X1: darken(#fff, 10%);
-$primary_text_color_DARKEN_X1: darken(#448aff, 10%);
-$secondary_text_color_DARKEN_X1: darken(#87849e, 10%);
-$info_text_color_DARKEN_X1: darken(#00bcd4, 10%);
-$warning_text_color_DARKEN_X1: darken(#ffba57, 10%);
-$success_text_color_DARKEN_X1: darken(#9ccc65, 10%);
-$danger_text_color_DARKEN_X1: darken(#ff5252, 10%);
+$default_text_color_DARKEN_X1: #eee;
+$primary_text_color_DARKEN_X1: color.adjust(#448aff, $lightness: -10%);
+$secondary_text_color_DARKEN_X1: color.adjust(#87849e, $lightness: -10%);
+$info_text_color_DARKEN_X1: color.adjust(#00bcd4, $lightness: -10%);
+$warning_text_color_DARKEN_X1: color.adjust(#ffba57, $lightness: -10%);
+$success_text_color_DARKEN_X1: color.adjust(#9ccc65, $lightness: -10%);
+$danger_text_color_DARKEN_X1: color.adjust(#ff5252, $lightness: -10%);
 
-$default_text_color_DARKEN_X2: darken(#fff, 20%);
-$primary_text_color_DARKEN_X2: darken(#448aff, 20%);
-$secondary_text_color_DARKEN_X2: darken(#87849e, 20%);
-$info_text_color_DARKEN_X2: darken(#00bcd4, 20%);
-$warning_text_color_DARKEN_X2: darken(#ffba57, 20%);
-$success_text_color_DARKEN_X2: darken(#9ccc65, 20%);
-$danger_text_color_DARKEN_X2: darken(#ff5252, 20%);
+$default_text_color_DARKEN_X2: #ddd;
+$primary_text_color_DARKEN_X2: color.adjust(#448aff, $lightness: -20%);
+$secondary_text_color_DARKEN_X2: color.adjust(#87849e, $lightness: -20%);
+$info_text_color_DARKEN_X2: color.adjust(#00bcd4, $lightness: -20%);
+$warning_text_color_DARKEN_X2: color.adjust(#ffba57, $lightness: -20%);
+$success_text_color_DARKEN_X2: color.adjust(#9ccc65, $lightness: -20%);
+$danger_text_color_DARKEN_X2: color.adjust(#ff5252, $lightness: -20%);
 
-$default_text_color_DARKEN_X3: darken(#fff, 30%);
-$primary_text_color_DARKEN_X3: darken(#448aff, 30%);
-$secondary_text_color_DARKEN_X3: darken(#87849e, 30%);
-$info_text_color_DARKEN_X3: darken(#00bcd4, 30%);
-$warning_text_color_DARKEN_X3: darken(#ffba57, 30%);
-$success_text_color_DARKEN_X3: darken(#9ccc65, 30%);
-$danger_text_color_DARKEN_X3: darken(#ff5252, 30%);
+$default_text_color_DARKEN_X3: #ccc;
+$primary_text_color_DARKEN_X3: color.adjust(#448aff, $lightness: -30%);
+$secondary_text_color_DARKEN_X3: color.adjust(#87849e, $lightness: -30%);
+$info_text_color_DARKEN_X3: color.adjust(#00bcd4, $lightness: -30%);
+$warning_text_color_DARKEN_X3: color.adjust(#ffba57, $lightness: -30%);
+$success_text_color_DARKEN_X3: color.adjust(#9ccc65, $lightness: -30%);
+$danger_text_color_DARKEN_X3: color.adjust(#ff5252, $lightness: -30%);
 
 $SIDEBAR_DESKTOP_WIDTH: 300px;
 $FOOTER_DESKTOP_HEIGHT: 44px;

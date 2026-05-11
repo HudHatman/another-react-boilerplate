@@ -1,3 +1,4 @@
+@use "sass:color";
 @import '../variables';
 
 .component-checkbox {
@@ -14,12 +15,12 @@
     background: #fff;
     cursor: pointer;
     padding: 0;
-    color: darken($color1, 20);
+    color: color.adjust($color1, $lightness: -20);
     vertical-align: middle;
 
     .component-checkbox--is-disabled {
-        color: lighten($color1, 20);
-        background: lighten($color1, 50);
+        color: color.adjust($color1, $lightness: 20);
+        background: color.adjust($color1, $lightness: 50);
         cursor: not-allowed;
     }
 

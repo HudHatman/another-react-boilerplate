@@ -1,4 +1,5 @@
-@import './variables';
+@use "sass:color";
+@import "./variables";
 
 .no-margin {
     margin: 0 !important;
@@ -25,9 +26,9 @@
 }
 
 .highlight-danger {
-    background-color: lighten($danger, 40) !important;
+    background-color: color.adjust($danger, $lightness: 40) !important;
 }
 
 .highlight-success {
-    background-color: lighten($success, 40) !important;
+    background-color: color.adjust($success, $lightness: 40) !important;
 }

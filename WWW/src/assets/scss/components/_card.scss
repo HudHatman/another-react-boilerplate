@@ -1,4 +1,5 @@
 @use "sass:math";
+@use "sass:color";
 @import '../variables';
 
 .component-card {
@@ -308,7 +309,7 @@
 
         &.component-card__footer--type-solid {
             border-top: $COMPONENT_BORDER;
-            background: darken($COMPONENT_BACKGROUND, 5%);
+            background: color.adjust($COMPONENT_BACKGROUND, $lightness: -5%);
         }
     }
 

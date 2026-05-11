@@ -1,3 +1,4 @@
+@use "sass:color";
 @import '../variables';
 
 .component-alert {
@@ -853,7 +854,7 @@
             .component-alert__icon-container--outer {
                 border-right: 1px solid $secondary;
                 .component-alert__icon-container--inner {
-                    color: lighten($secondary, 10%);
+                    color: color.adjust($secondary, $lightness: 10%);
                 }
             }
         }

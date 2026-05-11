@@ -1,3 +1,4 @@
+@use "sass:color";
 @import '../variables';
 
 .component-typography {
@@ -39,7 +40,7 @@
                 content: '\2014 \00A0';
             }
             display: block;
-            color: darken($default, 20%);
+            color: color.adjust($default, $lightness: -20%);
         }
     }
 

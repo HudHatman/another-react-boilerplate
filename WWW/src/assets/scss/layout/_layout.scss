@@ -1,3 +1,4 @@
+@use "sass:color";
 @import '../variables';
 
 .layout {
@@ -43,7 +44,7 @@
 
             .layout__sidebar__content__navigation {
                 display: block;
-                border-top: 1px solid lighten($logoBackgroundColor, 10);
+                border-top: 1px solid color.adjust($logoBackgroundColor, $lightness: 10);
 
                 .layout__sidebar__content__navigation__links__links {
                     list-style-type: none;
@@ -126,7 +127,7 @@
 
                         & > .layout__sidebar__content__navigation__links__links {
                             padding: $COMPONENT_PADDING_SM;
-                            background: lighten($SIDEBAR_BACKGROUND_COLOR, 10);
+                            background: color.adjust($SIDEBAR_BACKGROUND_COLOR, $lightness: 10);
                             margin-left: 20px;
                             width: calc(100% - 40px);
                             border-radius: $COMPONENT_BORDER_RADIUS;
@@ -169,7 +170,7 @@
                         position: relative;
 
                         &.layout__sidebar__sidebar-tab-active {
-                            background-color: lighten($logoBackgroundColor, 20) !important;
+                            background-color: color.adjust($logoBackgroundColor, $lightness: 20) !important;
                         }
                     }
                 }
@@ -221,7 +222,7 @@
 
                             & > .layout__sidebar__content__navigation__links__links {
                                 padding-left: 10px;
-                                background: lighten($SIDEBAR_BACKGROUND_COLOR, 10);
+                                background: color.adjust($SIDEBAR_BACKGROUND_COLOR, $lightness: 10);
                                 margin: 0;
                                 margin-left: 10px;
                                 margin-right: 5px;

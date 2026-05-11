@@ -1,3 +1,4 @@
+@use "sass:color";
 @import '../variables';
 
 .component-radio {
@@ -14,14 +15,14 @@
     background: #fff;
     cursor: pointer;
     padding: 0;
-    color: darken($color1, 20);
+    color: color.adjust($color1, $lightness: -20);
     vertical-align: middle;
 
     &.component-radio--is-disabled {
-        background: lighten($color1, 50);
+        background: color.adjust($color1, $lightness: 50);
         cursor: not-allowed;
         .component-radio__dot {
-            background-color: lighten($color1, 20);
+            background-color: color.adjust($color1, $lightness: 20);
         }
     }
 

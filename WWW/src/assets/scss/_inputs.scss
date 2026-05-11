@@ -1,3 +1,4 @@
+@use "sass:color";
 @import 'variables';
 
 .component-form-field {
@@ -52,7 +53,7 @@
             color: #000;
 
             &::placeholder {
-                color: lighten(#000, 35%);
+                color: color.adjust(#000, $lightness: 35%);
             }
 
             &[disabled] {
@@ -72,7 +73,7 @@
             color: #000;
 
             &::placeholder {
-                color: lighten(#000, 35%);
+                color: color.adjust(#000, $lightness: 35%);
             }
         }
         textarea {
@@ -85,7 +86,7 @@
             outline: 0 none;
 
             &::placeholder {
-                color: lighten(#000, 35%);
+                color: color.adjust(#000, $lightness: 35%);
             }
         }
         .component-form-field__input-container__error {
