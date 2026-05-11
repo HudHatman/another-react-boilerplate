@@ -4,69 +4,74 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
     resolve: {
-        extensions: [".js", ".jsx", ".ts", ".tsx"],
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
     },
-    context: resolve(__dirname, "../../src"),
+    context: resolve(__dirname, '../../src'),
     module: {
         rules: [
             {
                 test: [/\.jsx?$/, /\.tsx?$/],
-                use: ["babel-loader"],
+                use: ['babel-loader'],
                 exclude: /node_modules/,
             },
             {
                 test: /\.css$/,
-                use: ["style-loader", {loader: "css-loader"/*, options: {modules: true}*/}],
+                use: ['style-loader', { loader: 'css-loader' /*, options: {modules: true}*/ }],
             },
             {
                 test: /\.(scss|sass)$/,
-                use: ["style-loader", {loader: "css-loader"/*, options: {modules: true}*/}, {
-                    loader: "sass-loader",
-                    options: {
-                        // Prefer `dart-sass`
-                        implementation: require("sass"),
-                        sassOptions: {
-                            quietDeps: true
-                        }
+                use: [
+                    'style-loader',
+                    { loader: 'css-loader' /*, options: {modules: true}*/ },
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sassOptions: {
+                                silenceDeprecations: ['legacy-js-api', 'import', 'function-units', 'slash-div', 'global-builtin'],
+                                quietDeps: true,
+                            },
+                            // Prefer `dart-sass`
+                            implementation: require('sass'),
+                        },
                     },
-                },],
+                ],
             },
             {
                 test: /\.(jpe?g|png|gif)$/i,
-                type: 'asset/resource'
+                type: 'asset/resource',
             },
             {
                 test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
                 type: 'asset/resource',
                 generator: {
-                    filename: 'fonts/[hash][ext][query]'
-                }
+                    filename: 'fonts/[hash][ext][query]',
+                },
             },
             {
                 test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                 type: 'asset/resource',
                 generator: {
-                    filename: 'fonts/[hash][ext][query]'
-                }
+                    filename: 'fonts/[hash][ext][query]',
+                },
             },
             {
                 test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
                 type: 'asset/resource',
                 generator: {
-                    filename: 'fonts/[hash][ext][query]'
-                }
+                    filename: 'fonts/[hash][ext][query]',
+                },
             },
             {
                 test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
                 type: 'asset/resource',
                 generator: {
-                    filename: 'icons/[hash][ext][query]'
-                }
+                    filename: 'icons/[hash][ext][query]',
+                },
             },
         ],
     },
-    plugins: [new HtmlWebpackPlugin({template: "index.html.ejs"})],
+    plugins: [new HtmlWebpackPlugin({ template: 'index.html.ejs' })],
     performance: {
         hints: false,
     },
-};
+}
