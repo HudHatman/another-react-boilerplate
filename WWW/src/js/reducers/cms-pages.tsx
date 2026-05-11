@@ -41,7 +41,7 @@ const addNewMenuLink = (menu, link) => (dispatch, state) => {
                         data: { data },
                     },
                 }) => {
-                    return dispatch(fetch(getCurrentNode(getState(state))['id'])).then(() => {
+                    return dispatch(fetch(getCurrentNode(state())['id'])).then(() => {
                         resolve(data)
                     })
                 },

@@ -66,7 +66,8 @@
             @elseif (!empty($item->link) && !empty($item->link->link_url))
                 <li>
                     <a class="component-navbar-menu__menu-item nav-link px-2 {{$item->link->link_url === $slug ? "text-secondary" : "text-white"}}"
-                       href="{{$item->link->link_url}}">
+                       href="{{$item->link->link_url}}"
+                       target="{{$child->link->link_target}}">
                         @if (!empty($item->link->iconFile))
                             <img class="bi d-block mx-auto mb-1"
                                  src="{{url("/files/preview/{$item->link->iconFile->id}/{$item->link->iconFile->name}")}}"
