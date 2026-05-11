@@ -32,18 +32,22 @@ class File extends Model
         $newFile = new File();
         $fileName = Str::random() . '_' . $file->getClientOriginalName();
         $filePath = $file->storeAs('/uploads/user_avatar/', $fileName, 'public');
-        $newFile->fill([
-            'name' => $file->getClientOriginalName(),
-            'extension' => $file->clientExtension(),
-            'file_path' => '/uploads/user_avatar/' . $fileName,
-            'mime' => $file->getMimeType(),
-            'type' => 'file',
-            'size' => filesize(storage_path('app/public/uploads/user_avatar/' . $fileName)),
-            'title' => $file->getClientOriginalName(),
-            'class' => Arr::get($data, 'class', 'file'),
-        ]);
-        $newFile->user_id = $user->id;
-        $newFile->save();
+        try {
+            $newFile->fill([
+                'name' => $file->getClientOriginalName(),
+                'extension' => $file->clientExtension(),
+                'file_path' => '/uploads/user_avatar/' . $fileName,
+                'mime' => $file->getMimeType(),
+                'type' => 'file',
+                'size' => filesize(storage_path('app/public/uploads/user_avatar/' . $fileName)),
+                'title' => $file->getClientOriginalName(),
+                'class' => Arr::get($data, 'class', 'file'),
+            ]);
+            $newFile->user_id = $user->id;
+            $newFile->save();
+        } catch(\Exception $e) {
+
+        }
 
         try {
             $image = Image::make(storage_path('app/public/' . $newFile->file_path));
