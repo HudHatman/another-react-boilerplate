@@ -923,6 +923,45 @@ class CmsPagesController extends Controller
         return $this->responseOK($menuCategory);
     }
 
+
+
+    public function postMenuAddLink(Request $request)
+    {
+        $user = $this->getUserFromRequest($request);
+        $link = $request->post('link');
+
+        $rules = [
+            'link.link_name' => ['required', 'max:64'],
+        ];
+        $validator = Validator::make($link, $rules);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->messages(),
+            ], 422);
+        }
+
+        $menu['tree_class'] = 'menu';
+
+        $menuCategory = Tree::where('id', '=', $request->route('menu'))
+            ->first();
+
+        $link = $request->post('link');
+
+        $linkTree = $menuCategory->children()->create([
+            'tree_display_name' => Arr::get($link, 'link.link_name'),
+            'tree_class' => 'menu_link',
+            'tree_object_type' => 'link'
+        ]);
+        $linkTreeLink = Link::create(Arr::get($link, 'link'));
+        $linkTreeLink->tree_id = $linkTree->id;
+        $linkTreeLink->save();
+        $linkTree->link_id = $linkTreeLink->id;
+        $linkTree->save();
+
+        return $this->responseOK($menuCategory);
+    }
+
     public function getMenus(Request $request)
     {
         $user = $this->getUserFromRequest($request);

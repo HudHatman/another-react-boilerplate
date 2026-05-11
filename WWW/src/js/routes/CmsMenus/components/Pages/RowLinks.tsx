@@ -1,22 +1,23 @@
 import * as React from 'react'
-import { Alert, Button, Card, LoadingOverlay, Table, Tooltip, Typography } from '../../../../components'
-import { LinkIcon, PermissionIcon, PublishIcon, UnpublishIcon } from '../../../../components/icons'
-import { formatDateTime } from '../../../../helpers/date-time'
+import { Button, Table } from '../../../../components'
+import { AddIcon, LinkIcon } from '../../../../components/icons'
 import styles from '../../../../../assets/scss/routes/cms.scss'
 import classNames from 'classnames/bind'
-import { ModalConfirm } from '../../../../components/common/ModalConfirm'
-import { isPublished } from '../../../../helpers/cms'
 import { ModalManager } from '../../../../components/ui/Modal'
 import { RouteManager } from '../../../../containers'
-import { ButtonDelete } from '../../../../components/common/ButtonDelete'
-import { ButtonEdit } from '../../../../components/common/ButtonEdit'
 import SimpleModelCell from '../../../../components/common/SimpleModelCell'
-import ModalDeleteUserRole from '../../../../components/common/ModalDeleteUserRole'
 import ModalDeleteMenuLink from '../../../../components/common/ModalDeleteMenuLink'
+import { AddLinkFormContainer } from '../../containers/AddLinkFormContainer'
+import Manager from '../../../Cms/components/Manager'
 
 const cx = classNames.bind(styles)
 
-export class RowLinks extends React.Component<null, null> {
+export class RowLinks extends React.Component<null, {}> {
+    state: {}
+    constructor(props) {
+        super(props)
+        this.state = {addForm: false};
+    }
     render() {
         const { links, setIsLoading, fetchMenus, deleteNode, menu } = this.props
 
@@ -68,6 +69,49 @@ export class RowLinks extends React.Component<null, null> {
                                                 </SimpleModelCell>
                                             )
                                         })}
+                                        {!this.state.addForm && (
+                                            <Button
+                                                icon={<AddIcon />}
+                                                color={'success'}
+                                                type={'submit'}
+                                                block
+                                                onClick={() => {
+                                                    this.setState({ addForm: true })
+                                                }}
+                                            >
+                                                Add
+                                            </Button>
+                                        )}
+                                        {this.state.addForm && (
+                                            <Manager id={1}>
+                                                {({ setIsLoading, isLoading, fetchMenus, addNewMenuLink }) => {
+                                                    return (
+                                                        <AddLinkFormContainer
+                                                            onSubmit={(values) => {
+                                                                setIsLoading(true);
+                                                                addNewMenuLink(menu, values).then(() => {
+                                                                    fetchMenus().then(() => {
+                                                                        this.setState({ addForm: false }, () => {
+                                                                            setIsLoading(false)
+                                                                        })
+                                                                    })
+                                                                })
+                                                            }}
+                                                            initialValues={{
+                                                                target: null,
+                                                                link: {
+                                                                    link_name: '',
+                                                                    link_url: '',
+                                                                    category_id: 0,
+                                                                    document_id: 0,
+                                                                    link_target: '_self',
+                                                                },
+                                                            }}
+                                                        />
+                                                    )
+                                                }}
+                                            </Manager>
+                                        )}
                                     </div>
                                 </Table.Td>
                             </Table.Tr>

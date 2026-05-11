@@ -383,6 +383,12 @@ class RolesSeeder extends Seeder
                 'is_name_editable' => false,
                 'permissions' => [
                     [
+                        'name' => 'cms.menus',
+                        'guard_name' => 'web',
+                        'is_deletable' => false,
+                        'is_name_editable' => false,
+                    ],
+                    [
                         'name' => 'cms.menus.add',
                         'guard_name' => 'web',
                         'is_deletable' => false,
@@ -390,6 +396,24 @@ class RolesSeeder extends Seeder
                     ],
                     [
                         'name' => 'cms.menus.edit',
+                        'guard_name' => 'web',
+                        'is_deletable' => false,
+                        'is_name_editable' => false,
+                    ],
+                    [
+                        'name' => 'cms.menus.delete',
+                        'guard_name' => 'web',
+                        'is_deletable' => false,
+                        'is_name_editable' => false,
+                    ],
+                    [
+                        'name' => 'cms.menus.publish',
+                        'guard_name' => 'web',
+                        'is_deletable' => false,
+                        'is_name_editable' => false,
+                    ],
+                    [
+                        'name' => 'cms.menus.unpublish',
                         'guard_name' => 'web',
                         'is_deletable' => false,
                         'is_name_editable' => false,

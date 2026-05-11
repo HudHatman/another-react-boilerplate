@@ -35,6 +35,7 @@ Route::prefix('api/v1')->group(function () {
         Route::get('menus', '\App\Http\Controllers\CmsPagesController@getMenus');
         Route::get('menu', '\App\Http\Controllers\CmsPagesController@getMenu');
         Route::post('menus/add', '\App\Http\Controllers\CmsPagesController@postMenusAdd');
+        Route::post('menus/add_link/{menu}', '\App\Http\Controllers\CmsPagesController@postMenuAddLink');
     });
 
     Route::prefix('users')->group(function () {

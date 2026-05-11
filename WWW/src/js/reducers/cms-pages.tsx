@@ -31,8 +31,25 @@ const setCurrentNodeParents = (data) => (dispatch) => {
     dispatch({ type: SET_CURRENT_NODE_PARENTS, payload: data })
 }
 
-const addNewMenuLink = (data) => (dispatch) => {
-    dispatch({ type: ADD_NEW_MENU_LINK, payload: data })
+const addNewMenuLink = (menu, link) => (dispatch, state) => {
+    return new Promise<void>((resolve, reject) => {
+        return http
+            .post(`/cms/menus/add_link/${menu.id}`, { link })
+            .then(
+                ({
+                    data: {
+                        data: { data },
+                    },
+                }) => {
+                    return dispatch(fetch(getCurrentNode(getState(state))['id'])).then(() => {
+                        resolve(data)
+                    })
+                },
+            )
+            .catch((e) => {
+                reject(e)
+            })
+    })
 }
 
 const clearNewMenuLinks = () => (dispatch) => {

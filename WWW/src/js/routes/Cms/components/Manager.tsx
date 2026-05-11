@@ -131,7 +131,7 @@ const mapDispatchToProps = (dispatch) => {
         addDocument: (values) => dispatch(actions.addDocument(values)),
         editDocument: (values) => dispatch(actions.editDocument(values)),
         addLink: (values) => dispatch(actions.addLink(values)),
-        addNewMenuLink: (values) => dispatch(actions.addNewMenuLink(values)),
+        addNewMenuLink: (menu, values) => dispatch(actions.addNewMenuLink(menu, values)),
         editLink: (values) => dispatch(actions.editLink(values)),
         fetch: (filters) => dispatch(actions.fetch(filters)),
         fetchMenus: (filters) => dispatch(actions.fetchMenus(filters)),
