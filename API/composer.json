@@ -13,6 +13,7 @@
         "fruitcake/laravel-cors": "^2.2.0",
         "guzzlehttp/guzzle": "^7.8.1",
         "intervention/image": "^2.7.2",
+        "josiasmontag/laravel-recaptchav3": "^1.0",
         "kalnoy/nestedset": "^6.0.3",
         "laravel/framework": "^v8.83.27",
         "laravel/tinker": "^2.9.0",
