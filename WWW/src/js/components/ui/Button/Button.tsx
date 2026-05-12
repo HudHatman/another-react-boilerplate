@@ -1,5 +1,4 @@
 import * as React from 'react'
-import * as ReactDOM from 'react-dom'
 import classnames from 'classnames/bind'
 import _ from 'lodash'
 import { LoadingOverlay } from '../LoadingOverlay'
@@ -7,6 +6,7 @@ import { FaAngleDown as ArrowDownIcon, FaArrowRight as ArrowRightIcon } from 're
 import { AppContext } from '../../../../index'
 import { Link } from 'react-router-dom'
 import styles from '../../../../assets/scss/components/_button.scss'
+import { createRef, useEffect, useState } from 'react'
 
 const cx = classnames.bind(styles)
 
@@ -32,6 +32,9 @@ interface ButtonProps {
     transparent?: boolean
     style?: object
     bordered?: boolean
+    href?: string
+    disableContext: any
+    itemRef?: any
 }
 
 interface ButtonState {
@@ -39,41 +42,58 @@ interface ButtonState {
     isLoading: boolean
 }
 
-class Button extends React.Component<ButtonProps, ButtonState> {
-    state = {
-        color: 'primary',
-        isLoading: false,
-    }
+function Button({
+    color,
+    onClick,
+    size = 'md',
+    children,
+    disabled,
+    block,
+    icon,
+    iconOnly,
+    rounded,
+    outline,
+    roundless,
+    arrow,
+    borderless,
+    className,
+    type = 'button',
+    navigationHref,
+    onClickNavigation = () => null,
+    transparent,
+    style,
+    isLoading,
+    href,
+    disableContext,
+    bordered,
+    itemRef,
+    ...rest
+}: ButtonProps) {
+    const [colorState, setColor] = useState('primary')
+    const [isLoadingState, setIsLoading] = useState(false)
+    const navigationRef = createRef()
 
-    navigationRef = null
+    useEffect(() => {
+        setColor(color || 'primary')
+        setIsLoading(isLoading)
+    }, [])
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            color: props['color'] || 'primary',
-            isLoading: props['isLoading'],
-        }
-    }
+    useEffect(() => {
+        setIsLoading(isLoading)
+    }, [isLoading])
 
-    componentDidUpdate(prevProps, prevState) {
-        if (prevState['isLoading'] === this.state['isLoading'] && this.props['isLoading'] !== prevProps['isLoading']) {
-            this.setState({ isLoading: this.props['isLoading'] })
-        }
-        if (prevState['color'] === this.state['color'] && this.props['color'] !== prevProps['color']) {
-            this.setState({ color: this.props['color'] })
-        }
-    }
+    useEffect(() => {
+        setColor(color)
+    }, [color])
 
-    handleClick(event) {
-        const { onClick } = this.props
-
-        const navigationElement = ReactDOM.findDOMNode(this.navigationRef)
+    const handleClick = (event) => {
+        const navigationElement = navigationRef?.current
 
         if (!navigationElement || (navigationElement && !navigationElement.contains(event.target))) {
             if (_.isFunction(onClick)) {
                 const controller = {
-                    setColor: (color) => this.setState({ color }),
-                    setIsLoading: (isLoading) => this.setState({ isLoading }),
+                    setColor,
+                    setIsLoading,
                 }
 
                 onClick(event, controller)
@@ -83,104 +103,67 @@ class Button extends React.Component<ButtonProps, ButtonState> {
         return false
     }
 
-    render() {
-        return (
-            <AppContext.Consumer>
-                {({
-                    cardSize,
-                    buttonGroupSize,
-                    buttonGroupColor,
-                    buttonGroupOutline,
-                    buttonGroupDisabled,
-                    buttonGroupBorderless,
-                    pageHeaderSize,
-                } = {}) => {
-                    const {
-                        size = 'md',
-                        children,
-                        disabled,
-                        block,
-                        icon,
-                        iconOnly,
-                        rounded,
-                        outline,
-                        roundless,
-                        arrow,
-                        borderless,
-                        className,
-                        type = 'button',
-                        navigationHref,
-                        onClickNavigation = () => null,
-                        transparent,
-                        style,
-                        isLoading,
-                        href,
-                        disableContext,
-                        bordered,
-                        itemRef,
-                        ...rest
-                    } = this.props
+    return (
+        <AppContext.Consumer>
+            {({
+                cardSize,
+                buttonGroupSize,
+                buttonGroupColor,
+                buttonGroupOutline,
+                buttonGroupDisabled,
+                buttonGroupBorderless,
+                pageHeaderSize,
+            } = {}) => {
+                const classes = cx('component-button', className, {
+                    'component-button--is-loading': isLoadingState,
+                    'component-button--icon-only': iconOnly,
+                    'component-button--with-icon': icon,
+                    [`component-button--color-${buttonGroupColor || color}`]: buttonGroupColor || color,
+                    [`component-button--size-${pageHeaderSize || cardSize || buttonGroupSize || size}`]:
+                        pageHeaderSize || cardSize || buttonGroupSize || size,
+                    'component-button--block': block,
+                    'component-button--disabled': isLoadingState || buttonGroupDisabled || disabled,
+                    'component-button--rounded': rounded,
+                    'component-button--outline': buttonGroupOutline || outline,
+                    'component-button--roundless': roundless,
+                    'component-button--borderless': buttonGroupBorderless || borderless,
+                    'component-button--has-navigation': navigationHref,
+                    'component-button--transparent': transparent,
+                    'component-button--bordered': bordered,
+                })
 
-                    const { isLoading: isLoadingState, color = 'primary' } = this.state
+                const isDisabled = isLoading || isLoadingState || buttonGroupDisabled || disabled
 
-                    const classes = cx('component-button', className, {
-                        'component-button--is-loading': isLoading,
-                        'component-button--icon-only': iconOnly,
-                        'component-button--with-icon': icon,
-                        [`component-button--color-${buttonGroupColor || color}`]: buttonGroupColor || color,
-                        [`component-button--size-${pageHeaderSize || cardSize || buttonGroupSize || size}`]:
-                            pageHeaderSize || cardSize || buttonGroupSize || size,
-                        'component-button--block': block,
-                        'component-button--disabled': isLoading || buttonGroupDisabled || disabled,
-                        'component-button--rounded': rounded,
-                        'component-button--outline': buttonGroupOutline || outline,
-                        'component-button--roundless': roundless,
-                        'component-button--borderless': buttonGroupBorderless || borderless,
-                        'component-button--has-navigation': navigationHref,
-                        'component-button--transparent': transparent,
-                        'component-button--bordered': bordered,
-                    })
-
-                    const isDisabled = isLoading || isLoadingState || buttonGroupDisabled || disabled
-
-                    return (
-                        <div
-                            ref={itemRef}
-                            style={{
-                                display: block ? 'flex' : 'inline-flex',
-                            }}
-                        >
-                            <button
-                                {...rest}
-                                style={style}
-                                className={classes}
-                                onClick={this.handleClick.bind(this)}
-                                disabled={isDisabled}
-                                type={type}
-                            >
-                                {icon}
-                                {!iconOnly && <div>{children}</div>}
-                                {arrow && <ArrowDownIcon className={cx('component-button__arrow-icon')} />}
-                                {navigationHref && (
-                                    <Link
-                                        to={navigationHref}
-                                        className={cx('component-button__navigation')}
-                                        ref={(e) => (this.navigationRef = e)}
-                                        onClick={() => {
-                                            onClickNavigation()
-                                        }}
-                                    >
-                                        <ArrowRightIcon />
-                                    </Link>
-                                )}
-                                {(isLoading || isLoadingState) && <LoadingOverlay size="xs" />}
-                            </button>
-                        </div>
-                    )
-                }}
-            </AppContext.Consumer>
-        )
-    }
+                return (
+                    <div
+                        ref={itemRef}
+                        style={{
+                            display: block ? 'flex' : 'inline-flex',
+                        }}
+                    >
+                        <button {...rest} style={style} className={classes} onClick={handleClick} disabled={isDisabled} type={type}>
+                            {icon}
+                            {!iconOnly && <div>{children}</div>}
+                            {arrow && <ArrowDownIcon className={cx('component-button__arrow-icon')} />}
+                            {navigationHref && (
+                                <Link
+                                    to={navigationHref}
+                                    className={cx('component-button__navigation')}
+                                    ref={(e) => (navigationRef = e)}
+                                    onClick={() => {
+                                        onClickNavigation()
+                                    }}
+                                >
+                                    <ArrowRightIcon />
+                                </Link>
+                            )}
+                            {(isLoading || isLoadingState) && <LoadingOverlay size="xs" />}
+                        </button>
+                    </div>
+                )
+            }}
+        </AppContext.Consumer>
+    )
 }
 
 export default { Button }

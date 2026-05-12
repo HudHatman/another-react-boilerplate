@@ -21,9 +21,9 @@ interface BadgeProps {
     right?: boolean
 }
 
-class Badge extends React.Component<BadgeProps, null> {
-    renderClassName({ cardSize, dropdownSize, accordionSize } = {}) {
-        const { color = 'default', className, outline, href, size, arrow, rounded, roundless } = this.props
+function Badge({ children, color = 'default', className, href, size = 'md', arrow, rounded, disableContext, ...props }: BadgeProps) {
+    const renderClassName = ({ cardSize, dropdownSize, accordionSize } = {}) => {
+        const { outline, roundless } = props
 
         return cx('component-badge', {
             [className]: className,
@@ -37,44 +37,38 @@ class Badge extends React.Component<BadgeProps, null> {
         })
     }
 
-    render() {
-        const { disableContext } = this.props
-
-        return (
-            <AppContext.Consumer>
-                {({ cardSize, dropdownSize, accordionSize } = {}) => {
-                    const { children, color = 'default', className, href, size = 'md', arrow, rounded, ...props } = this.props
-
-                    if (href) {
-                        return (
-                            <Link
-                                className={this.renderClassName(
-                                    disableContext
-                                        ? {}
-                                        : {
-                                              cardSize,
-                                              dropdownSize,
-                                              accordionSize,
-                                          },
-                                )}
-                                to={href}
-                            >
-                                {children}
-                                {arrow && <ArrowIcon className={cx('component-badge__arrow-icon')} />}
-                            </Link>
-                        )
-                    }
-
+    return (
+        <AppContext.Consumer>
+            {({ cardSize, dropdownSize, accordionSize } = {}) => {
+                if (href) {
                     return (
-                        <div className={this.renderClassName(disableContext ? {} : { cardSize, dropdownSize, accordionSize })} {...props}>
+                        <Link
+                            className={renderClassName(
+                                disableContext
+                                    ? {}
+                                    : {
+                                          cardSize,
+                                          dropdownSize,
+                                          accordionSize,
+                                      },
+                            )}
+                            to={href}
+                        >
                             {children}
                             {arrow && <ArrowIcon className={cx('component-badge__arrow-icon')} />}
-                        </div>
+                        </Link>
                     )
-                }}
-            </AppContext.Consumer>
-        )
-    }
+                }
+
+                return (
+                    <div className={renderClassName(disableContext ? {} : { cardSize, dropdownSize, accordionSize })} {...props}>
+                        {children}
+                        {arrow && <ArrowIcon className={cx('component-badge__arrow-icon')} />}
+                    </div>
+                )
+            }}
+        </AppContext.Consumer>
+    )
 }
 
 export { Badge }

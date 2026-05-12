@@ -5,6 +5,7 @@ import _ from 'lodash'
 import { LoadingOverlay } from '../LoadingOverlay'
 import styles1 from '../../../../assets/scss/components/_alert.scss'
 import styles2 from '../../../../assets/scss/_animations.scss'
+import { useState } from 'react'
 
 const cx = classNames.bind({ ...styles1, ...styles2 })
 
@@ -32,113 +33,83 @@ interface AlertState {
     isLoading: boolean
 }
 
-class Alert extends React.Component<AlertProps, AlertState> {
-    state = {
-        animationStarted: false,
-        remove: false,
-        isLoading: false,
+function Alert(props: AlertProps) {
+    const {
+        children,
+        color = 'default',
+        className,
+        outline,
+        closeIcon,
+        onClickClose,
+        withIcon,
+        iconHighlighted,
+        withIconArrow,
+        rounded,
+        background,
+        size = 'md',
+        alignCenter,
+        ..._props
+    } = props
+    const [animationStarted, setAnimationStarted] = useState(false)
+    const [remove, setRemove] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
+
+    const close = () => {
+        setIsLoading(false)
+        setAnimationStarted(true)
+        setTimeout(() => {
+            setRemove(true)
+        }, animationDuration)
     }
 
-    constructor(props) {
-        super(props)
+    if (remove) return null
 
-        this.close = this.close.bind(this)
-        this.setIsLoading = this.setIsLoading.bind(this)
-    }
-
-    static getDerivedStateFromProps(nextProps, prevState) {
-        if (nextProps['isLoading'] !== prevState['isLoading']) {
-            return {
-                checked: Boolean(nextProps['isLoading']),
-            }
-        }
-
-        return null
-    }
-
-    close() {
-        this.setIsLoading(false).then(() => {
-            this.setState({ animationStarted: true })
-            setTimeout(() => {
-                this.setState({ remove: true })
-            }, animationDuration)
-        })
-    }
-
-    setIsLoading(isLoading) {
-        return new Promise((resolve) => {
-            this.setState({ isLoading }, () => resolve(isLoading))
-        })
-    }
-
-    render() {
-        const {
-            children,
-            color = 'default',
-            className,
-            outline,
-            closeIcon,
-            onClickClose,
-            withIcon,
-            iconHighlighted,
-            withIconArrow,
-            rounded,
-            background,
-            size = 'md',
-            alignCenter,
-            ...props
-        } = this.props
-        const { animationStarted, remove, isLoading } = this.state
-
-        if (remove) return null
-
-        return (
-            <div
-                className={cx('component-alert', {
-                    [className]: className,
-                    [`component-alert--color-${color}`]: color,
-                    [`component-alert--outline`]: outline,
-                    [`component-alert--close-icon`]: closeIcon,
-                    [`component-alert--with-icon`]: withIcon,
-                    [`component-alert--with-icon-arrow`]: withIconArrow,
-                    [`component-alert--icon-highlighted`]: iconHighlighted,
-                    [`component-alert--rounded`]: rounded,
-                    [`component-alert--background`]: background,
-                    ['animation--fade-out-top']: animationStarted,
-                    [`component-alert--size-${size}`]: size,
-                    [`component-alert--align-center`]: alignCenter,
-                })}
-                {...props}
-            >
-                {withIcon && (
-                    <div className={cx('component-alert__icon-container--outer')}>
-                        <div className={cx('component-alert__icon-container--inner')}>{withIcon}</div>
-                    </div>
-                )}
-                <div className={cx('component-alert__content--outer')}>
-                    <div className={cx('component-alert__content--inner')}>{children}</div>
+    return (
+        <div
+            className={cx('component-alert', {
+                [className]: className,
+                [`component-alert--color-${color}`]: color,
+                [`component-alert--outline`]: outline,
+                [`component-alert--close-icon`]: closeIcon,
+                [`component-alert--with-icon`]: withIcon,
+                [`component-alert--with-icon-arrow`]: withIconArrow,
+                [`component-alert--icon-highlighted`]: iconHighlighted,
+                [`component-alert--rounded`]: rounded,
+                [`component-alert--background`]: background,
+                ['animation--fade-out-top']: animationStarted,
+                [`component-alert--size-${size}`]: size,
+                [`component-alert--align-center`]: alignCenter,
+            })}
+            {...props}
+        >
+            {withIcon && (
+                <div className={cx('component-alert__icon-container--outer')}>
+                    <div className={cx('component-alert__icon-container--inner')}>{withIcon}</div>
                 </div>
-                {closeIcon && (
-                    <div
-                        className={cx('component-alert__close-icon')}
-                        onClick={() => {
-                            if (_.isFunction(onClickClose)) {
-                                onClickClose({
-                                    close: this.close,
-                                    setIsLoading: this.setIsLoading,
-                                })
-                            } else {
-                                this.close()
-                            }
-                        }}
-                    >
-                        <CloseIcon className={cx('component--alert__close-icon__icon')} />
-                    </div>
-                )}
-                {isLoading && <LoadingOverlay size="xs" />}
+            )}
+            <div className={cx('component-alert__content--outer')}>
+                <div className={cx('component-alert__content--inner')}>{children}</div>
             </div>
-        )
-    }
+            {closeIcon && (
+                <div
+                    className={cx('component-alert__close-icon')}
+                    onClick={() => {
+                        if (_.isFunction(onClickClose)) {
+                            onClickClose({
+                                close,
+                                setIsLoading,
+                            })
+                        } else {
+                            close()
+                        }
+                    }}
+                >
+                    <CloseIcon className={cx('component--alert__close-icon__icon')} />
+                </div>
+            )}
+            {isLoading && <LoadingOverlay size="xs" />}
+        </div>
+    )
 }
 
 export { Alert }

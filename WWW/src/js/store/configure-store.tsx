@@ -1,5 +1,5 @@
 import { createStore, compose, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
+import { thunk } from 'redux-thunk'
 import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 import * as reducers from '../reducers'

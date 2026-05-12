@@ -8,6 +8,7 @@ import { AppContext } from '../../../../index'
 import { LoadingOverlay } from '../LoadingOverlay'
 import styles from '../../../../assets/scss/components/_card.scss'
 import { LocalStorage } from '../../../modules/database'
+import { useEffect, useState } from 'react'
 
 const cx = classNames.bind(styles)
 
@@ -30,50 +31,52 @@ interface CardProps {
     name?: string
 }
 
-class Card extends React.Component<CardProps, null> {
-    state = {
-        closed: false,
-        minimized: false,
-    }
+function Card({
+    children,
+    header,
+    headerActions,
+    color = 'primary',
+    withCloseIcon,
+    onClickClose,
+    className,
+    withMinimizeIcon,
+    size = 'md',
+    isLoading,
+    noBorderTop,
+    footer,
+    footerType,
+    style,
+    solidBackground,
+    name,
+}: CardProps) {
+    const [closed, setClosed] = useState(false)
+    const [minimized, setMinimized] = useState(false)
 
-    constructor(props) {
-        super(props)
-        this.close = this.close.bind(this)
-        this.maximize = this.maximize.bind(this)
-    }
-
-    componentDidMount() {
-        const { name } = this.props
-
+    useEffect(() => {
         if (name) {
             const save = LocalStorage.queryAll('CardMinimize', {
                 query: { name },
             })[0]
             if (save) {
-                this.setState({ minimized: save.minimized })
+                setMinimized(save.minimized)
             }
         }
+    }, [name])
+
+    const close = () => {
+        setClosed(true)
     }
 
-    close() {
-        this.setState({ closed: true })
-    }
-
-    maximize() {
-        const { name } = this.props
-
-        this.setState({ minimized: false })
-
+    const maximize = () => {
+        setMinimized(false)
         if (name) {
             LocalStorage.insertOrUpdate('CardMinimize', { name }, { name, minimized: false })
             LocalStorage.commit()
         }
     }
 
-    minimize() {
-        const { name } = this.props
-
-        this.setState({ minimized: true })
+    const minimize = () => {
+        setMinimized(true)
 
         if (name) {
             LocalStorage.insertOrUpdate('CardMinimize', { name }, { name, minimized: true })
@@ -81,129 +84,106 @@ class Card extends React.Component<CardProps, null> {
         }
     }
 
-    renderButton(props = {}) {
-        const { size } = this.props
-
+    const renderButton = (props = {}) => {
         return <Button {...props} size={size} />
     }
 
-    render() {
-        const {
-            children,
-            header,
-            headerActions,
-            color,
-            withCloseIcon,
-            onClickClose,
-            className,
-            withMinimizeIcon,
-            size = 'md',
-            isLoading,
-            noBorderTop,
-            footer,
-            footerType,
-            style,
-            solidBackground,
-        } = this.props
-        const { closed, minimized } = this.state
-
-        if (closed) {
-            return null
-        }
-
-        return (
-            <div
-                className={cx('component-card', {
-                    [`component-card--color-${color}`]: color,
-                    [`component-card--with-close-icon`]: withCloseIcon,
-                    [`component-card--size-${size}`]: size,
-                    [`component-card--no-border-top`]: noBorderTop,
-                    [`component-card--solid-background`]: solidBackground,
-                    [className]: true,
-                })}
-                style={style}
-            >
-                {header && (
-                    <AppContext.Provider
-                        value={{
-                            cardSize: size,
-                        }}
-                    >
-                        <div className={cx('component-card__header')}>
-                            {_.isFunction(header) && header()}
-                            {!_.isFunction(header) && header}
-                            <div className={cx('component-card__header__actions')}>
-                                {_.isFunction(headerActions) &&
-                                    headerActions({
-                                        maximize: this.maximize,
-                                    })}
-                                {!_.isFunction(headerActions) && !_.isEmpty(headerActions) && headerActions}
-                                {withMinimizeIcon &&
-                                    this.renderButton({
-                                        href: '#',
-                                        onClick: (e) => {
-                                            e.preventDefault()
-                                            if (minimized) {
-                                                this.maximize()
-                                            } else {
-                                                this.minimize()
-                                            }
-                                        },
-                                        iconOnly: true,
-                                        outline: true,
-                                        roundless: true,
-                                        borderless: true,
-                                        icon: minimized ? <MaximizeIcon /> : <MinimizeIcon />,
-                                        color,
-                                        className: 'component-card__header__actions__action-button',
-                                        size,
-                                    })}
-                                {withCloseIcon &&
-                                    this.renderButton({
-                                        href: '#',
-                                        onClick: (e) => {
-                                            e.preventDefault()
-                                            if (_.isFunction(onClickClose)) {
-                                                onClickClose({
-                                                    close: this.close,
-                                                })
-                                            } else {
-                                                this.close()
-                                            }
-                                        },
-                                        iconOnly: true,
-                                        outline: true,
-                                        roundless: true,
-                                        borderless: true,
-                                        icon: <CloseIcon />,
-                                        color,
-                                        className: 'component-card__header__actions__action-button',
-                                        size,
-                                    })}
-                            </div>
-                        </div>
-                    </AppContext.Provider>
-                )}
-                {!minimized && [
-                    <div className={cx('component-card__content')}>
-                        <div>
-                            {_.isFunction(children) && children()}
-                            {!_.isFunction(children) && children}
-                        </div>
-                    </div>,
-                    <div
-                        className={cx('component-card__footer', {
-                            [`component-card__footer--type-${footerType}`]: footerType,
-                        })}
-                    >
-                        {_.isFunction(footer) && footer()}
-                        {!_.isFunction(footer) && footer}
-                    </div>,
-                ]}
-                {isLoading && <LoadingOverlay />}
-            </div>
-        )
+    if (closed) {
+        return null
     }
+
+    return (
+        <div
+            className={cx('component-card', {
+                [`component-card--color-${color}`]: color,
+                [`component-card--with-close-icon`]: withCloseIcon,
+                [`component-card--size-${size}`]: size,
+                [`component-card--no-border-top`]: noBorderTop,
+                [`component-card--solid-background`]: solidBackground,
+                [className]: true,
+            })}
+            style={style}
+        >
+            {header && (
+                <AppContext.Provider
+                    value={{
+                        cardSize: size,
+                    }}
+                >
+                    <div className={cx('component-card__header')}>
+                        {_.isFunction(header) && header()}
+                        {!_.isFunction(header) && header}
+                        <div className={cx('component-card__header__actions')}>
+                            {_.isFunction(headerActions) &&
+                                headerActions({
+                                    maximize,
+                                })}
+                            {!_.isFunction(headerActions) && !_.isEmpty(headerActions) && headerActions}
+                            {withMinimizeIcon &&
+                                renderButton({
+                                    href: '#',
+                                    onClick: (e) => {
+                                        e.preventDefault()
+                                        if (minimized) {
+                                            maximize()
+                                        } else {
+                                            minimize()
+                                        }
+                                    },
+                                    iconOnly: true,
+                                    outline: true,
+                                    roundless: true,
+                                    borderless: true,
+                                    icon: minimized ? <MaximizeIcon /> : <MinimizeIcon />,
+                                    color,
+                                    className: 'component-card__header__actions__action-button',
+                                    size,
+                                })}
+                            {withCloseIcon &&
+                                renderButton({
+                                    href: '#',
+                                    onClick: (e) => {
+                                        e.preventDefault()
+                                        if (_.isFunction(onClickClose)) {
+                                            onClickClose({
+                                                close,
+                                            })
+                                        } else {
+                                            close()
+                                        }
+                                    },
+                                    iconOnly: true,
+                                    outline: true,
+                                    roundless: true,
+                                    borderless: true,
+                                    icon: <CloseIcon />,
+                                    color,
+                                    className: 'component-card__header__actions__action-button',
+                                    size,
+                                })}
+                        </div>
+                    </div>
+                </AppContext.Provider>
+            )}
+            {!minimized && [
+                <div className={cx('component-card__content')}>
+                    <div>
+                        {_.isFunction(children) && children()}
+                        {!_.isFunction(children) && children}
+                    </div>
+                </div>,
+                <div
+                    className={cx('component-card__footer', {
+                        [`component-card__footer--type-${footerType}`]: footerType,
+                    })}
+                >
+                    {_.isFunction(footer) && footer()}
+                    {!_.isFunction(footer) && footer}
+                </div>,
+            ]}
+            {isLoading && <LoadingOverlay />}
+        </div>
+    )
 }
 
 export { Card }
