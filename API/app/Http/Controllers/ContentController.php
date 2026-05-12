@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Config;
 use App\Models\Document;
 use App\Models\Tree;
+use App\Models\ContentHit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -227,11 +228,23 @@ class ContentController extends Controller
             $cookie = [];
         }
 
+        // hit
         $tree->category->category_hits += 1;
-
+        $hit = ContentHit::create([
+           'user_ip' => $request->ip(),
+           'session_id' => session()->getId(),
+           'user_agent' => $request->userAgent(),
+           'tree_id' => $tree->id,
+           'referer' => request()->headers->get('referer'),
+           'path' =>  url()->current(),
+        ]);
         if (!in_array($tree->category->category_url, $cookie)) {
             $tree->category->category_unique_hits += 1;
+
+            $hit->unique_hit = TRUE;
+            $hit->save();
         }
+
 
         $tree->category->save();
 
@@ -317,10 +330,21 @@ class ContentController extends Controller
             $cookie = [];
         }
 
+        // hit
         $tree->document->document_hits += 1;
-
+        $hit = ContentHit::create([
+           'user_ip' => $request->ip(),
+           'session_id' => session()->getId(),
+           'user_agent' => $request->userAgent(),
+           'tree_id' => $tree->id,
+           'referer' => request()->headers->get('referer'),
+           'path' =>  url()->current(),
+        ]);
         if (!in_array($tree->document->document_url, $cookie)) {
             $tree->document->document_unique_hits += 1;
+
+            $hit->unique_hit = TRUE;
+            $hit->save();
         }
 
         $tree->document->save();

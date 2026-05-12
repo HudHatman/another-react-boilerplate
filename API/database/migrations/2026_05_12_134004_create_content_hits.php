@@ -16,9 +16,12 @@ class CreateContentHits extends Migration
         Schema::create('content_hits', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('tree_id');
-            $table->unsignedBigInteger('hits')->default(0);
-            $table->string('hit_ip', 15)->nullable();
+            $table->boolean('unique_hit')->default(FALSE);
+            $table->string('session_id')->nullable();
+            $table->string('user_ip', 15)->nullable();
             $table->string('user_agent')->nullable();
+            $table->string('referer')->nullable();
+            $table->string('path')->nullable();
             $table->index('tree_id');
             $table->timestamps();
         });
