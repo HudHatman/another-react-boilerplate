@@ -51,37 +51,27 @@ class AddMenuForm extends React.Component {
                                                             type="text"
                                                             component={FormField}
                                                         />
-                                                        <Card
-                                                            header={
-                                                                <h1>
-                                                                    Publishing{' '}
-                                                                    <Badge color={isPublished(formValues) ? 'success' : 'warning'}>
-                                                                        {isPublished(formValues) ? 'Is published' : 'Is not Published'}
-                                                                    </Badge>
-                                                                </h1>
-                                                            }
-                                                            color={'secondary'}
-                                                        >
-                                                            <Field
-                                                                name="tree.tree_is_published"
-                                                                label="Is published?"
-                                                                type="checkbox"
-                                                                component={FormField}
-                                                            />
-                                                            <Field
-                                                                name="tree.tree_published_from"
-                                                                label="Published from"
-                                                                type="text"
-                                                                component={FormField}
-                                                            />
-                                                            <Field
-                                                                name="tree.tree_published_to"
-                                                                label="Published to"
-                                                                type="text"
-                                                                component={FormField}
-                                                            />
-                                                        </Card>
-                                                        <Card header={<h1>Links</h1>} color={'secondary'}>
+                                                        <h1>
+                                                            Publishing{' '}
+                                                            <Badge color={isPublished(formValues) ? 'success' : 'warning'}>
+                                                                {isPublished(formValues) ? 'Is published' : 'Is not Published'}
+                                                            </Badge>
+                                                        </h1>
+
+                                                        <Field
+                                                            name="tree.tree_is_published"
+                                                            label="Is published?"
+                                                            type="checkbox"
+                                                            component={FormField}
+                                                        />
+                                                        <Field
+                                                            name="tree.tree_published_from"
+                                                            label="Published from"
+                                                            type="text"
+                                                            component={FormField}
+                                                        />
+                                                        <Field name="tree.tree_published_to" label="Published to" type="text" component={FormField} />
+                                                        {/*                                                        <Card header={<h1>Links</h1>} color={'secondary'}>
                                                             <div>
                                                                 {newMenuLinks.map((link) => {
                                                                     return (
@@ -105,12 +95,12 @@ class AddMenuForm extends React.Component {
                                                                     )
                                                                 })}
                                                             </div>
-                                                        </Card>
+                                                        </Card>*/}
                                                         <ButtonSave />
                                                     </div>
                                                 </form>
                                             </Col>
-                                            <Col xs={12} md={6}>
+                                            {/*                                <Col xs={12} md={6}>
                                                 <div>
                                                     <AddLinkFormContainer
                                                         onSubmit={(values) => {
@@ -128,7 +118,7 @@ class AddMenuForm extends React.Component {
                                                         }}
                                                     />
                                                 </div>
-                                            </Col>
+                                            </Col>*/}
                                         </Row>
                                     )}
                                 </Tabs.Content>
