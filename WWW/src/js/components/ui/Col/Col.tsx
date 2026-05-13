@@ -17,27 +17,23 @@ interface ColProps {
     alignCenter?: boolean
 }
 
-class Col extends React.Component<ColProps, null> {
-    render() {
-        const { children, className, xs, sm, md, lg, alignRight, alignCenter, ...props } = this.props
-
-        return (
-            <div
-                {...props}
-                className={cx('component-col', {
-                    [className]: className,
-                    [`component-col--xs-${Number(xs)}`]: Number(xs),
-                    [`component-col--sm-${Number(sm)}`]: Number(sm),
-                    [`component-col--md-${Number(md)}`]: Number(md),
-                    [`component-col--lg-${Number(lg)}`]: Number(lg),
-                    [`component-col--align-right`]: alignRight,
-                    [`component-col--align-center`]: alignCenter,
-                })}
-            >
-                {children}
-            </div>
-        )
-    }
+function Col({ children, className, xs, sm, md, lg, alignRight, alignCenter, ...props }: ColProps) {
+    return (
+        <div
+            {...props}
+            className={cx('component-col', {
+                [className]: className,
+                [`component-col--xs-${Number(xs)}`]: Number(xs),
+                [`component-col--sm-${Number(sm)}`]: Number(sm),
+                [`component-col--md-${Number(md)}`]: Number(md),
+                [`component-col--lg-${Number(lg)}`]: Number(lg),
+                [`component-col--align-right`]: alignRight,
+                [`component-col--align-center`]: alignCenter,
+            })}
+        >
+            {children}
+        </div>
+    )
 }
 
 export { Col }

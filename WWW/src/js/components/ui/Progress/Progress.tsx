@@ -10,21 +10,17 @@ interface ProgressProps {
     progress: number
 }
 
-class Progress extends React.Component<ProgressProps, null> {
-    render() {
-        const { size = 'md', color = 'default', progress = 0 } = this.props
-
-        return (
-            <div
-                className={cx('component-progress', {
-                    [`component-progress--size-${size}`]: size,
-                    [`component-progress--color-${color}`]: color,
-                })}
-            >
-                <div className={cx('component-progress__progress')} style={{ width: `${progress}%` }} />
-            </div>
-        )
-    }
+function Progress({ size = 'md', color = 'default', progress = 0 }: ProgressProps) {
+    return (
+        <div
+            className={cx('component-progress', {
+                [`component-progress--size-${size}`]: size,
+                [`component-progress--color-${color}`]: color,
+            })}
+        >
+            <div className={cx('component-progress__progress')} style={{ width: `${progress}%` }} />
+        </div>
+    )
 }
 
 export { Progress }

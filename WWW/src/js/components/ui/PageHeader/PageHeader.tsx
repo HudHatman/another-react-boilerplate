@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { useEffect } from 'react'
 import classNames from 'classnames/bind'
 import { AppContext } from '../../../../index'
 import { createPortal } from 'react-dom'
@@ -118,39 +119,33 @@ interface TitleProps {
     children: any
 }
 
-export class Title extends React.Component<TitleProps, null> {
-    render() {
-        const { children } = this.props
-
-        return <AppContext.Consumer>{({ titleElement }) => createPortal(children, titleElement)}</AppContext.Consumer>
-    }
+export function Title({ children }: TitleProps) {
+    return <AppContext.Consumer>{({ titleElement }) => createPortal(children, titleElement)}</AppContext.Consumer>
 }
 
 interface BreadcrumbsProps {
     children: any
 }
 
-export class Breadcrumbs extends React.Component<BreadcrumbsProps, null> {
-    setBreadcrumbsExists = null
+export function Breadcrumbs({ children }: BreadcrumbsProps) {
+    let _setBreadcrumbsExists = () => null
 
-    componentWillUnmount() {
-        this.setBreadcrumbsExists(false)
-    }
+    useEffect(() => {
+        return () => {
+            _setBreadcrumbsExists(false)
+        }
+    }, [])
 
-    render() {
-        const { children } = this.props
+    return (
+        <AppContext.Consumer>
+            {({ breadcrumbsElement, setBreadcrumbsExists }) => {
+                setBreadcrumbsExists(true)
+                _setBreadcrumbsExists = setBreadcrumbsExists
 
-        return (
-            <AppContext.Consumer>
-                {({ breadcrumbsElement, setBreadcrumbsExists }) => {
-                    setBreadcrumbsExists(true)
-                    this.setBreadcrumbsExists = setBreadcrumbsExists
-
-                    return createPortal(children, breadcrumbsElement)
-                }}
-            </AppContext.Consumer>
-        )
-    }
+                return createPortal(children, breadcrumbsElement)
+            }}
+        </AppContext.Consumer>
+    )
 }
 
 interface BreadcrumbsItemProps {
@@ -158,40 +153,32 @@ interface BreadcrumbsItemProps {
     href?: string
 }
 
-export class BreadcrumbsItem extends React.Component<BreadcrumbsItemProps, null> {
-    render() {
-        const { children, href = '' } = this.props
-
-        const getComponent = () => {
-            if (!_.isEmpty(children) && _.isFunction(children.type)) {
-                return children
-            } else if (!_.isEmpty(href)) {
-                return (
-                    <Link to={href}>
-                        <span>{children}</span>
-                    </Link>
-                )
-            } else if (_.isEmpty(href)) {
-                return (
-                    <a>
-                        <span>{children}</span>
-                    </a>
-                )
-            }
+export function BreadcrumbsItem({ children, href = '' }: BreadcrumbsItemProps) {
+    const getComponent = () => {
+        if (!_.isEmpty(children) && _.isFunction(children.type)) {
+            return children
+        } else if (!_.isEmpty(href)) {
+            return (
+                <Link to={href}>
+                    <span>{children}</span>
+                </Link>
+            )
+        } else if (_.isEmpty(href)) {
+            return (
+                <a>
+                    <span>{children}</span>
+                </a>
+            )
         }
-
-        return <li>{getComponent()}</li>
     }
+
+    return <li>{getComponent()}</li>
 }
 
 interface ActionsProps {
     children: any
 }
 
-export class Actions extends React.Component<ActionsProps, null> {
-    render() {
-        const { children } = this.props
-
-        return <AppContext.Consumer>{({ actionsElement }) => createPortal(children, actionsElement)}</AppContext.Consumer>
-    }
+export function Actions({children}: ActionsProps) {
+    return <AppContext.Consumer>{({ actionsElement }) => createPortal(children, actionsElement)}</AppContext.Consumer>
 }

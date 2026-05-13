@@ -14,24 +14,20 @@ interface RowProps {
     noMarginBottom?: boolean
 }
 
-class Row extends React.Component<RowProps, null> {
-    render() {
-        const { children, builder, className, alignCenter, noMarginBottom, ...props } = this.props
-
-        return (
-            <div
-                {...props}
-                className={cx('component-row', className, {
-                    [cx('builder')]: builder,
-                    [cx('component-row--no-padding')]: props['noPadding'],
-                    [cx('component-row--align-center')]: alignCenter,
-                    [cx('component-row--no-margin-bottom')]: noMarginBottom,
-                })}
-            >
-                {children}
-            </div>
-        )
-    }
+function Row({ children, builder, className, alignCenter, noMarginBottom, ...props }: RowProps) {
+    return (
+        <div
+            {...props}
+            className={cx('component-row', className, {
+                [cx('builder')]: builder,
+                [cx('component-row--no-padding')]: props['noPadding'],
+                [cx('component-row--align-center')]: alignCenter,
+                [cx('component-row--no-margin-bottom')]: noMarginBottom,
+            })}
+        >
+            {children}
+        </div>
+    )
 }
 
 export { Row }

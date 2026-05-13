@@ -7,22 +7,18 @@ interface IconBoxProps {
     isLoading: boolean
 }
 
-class IconBox extends React.Component<IconBoxProps, null> {
-    render() {
-        const { icon, children, isLoading } = this.props
-
-        return (
-            <div className="icon-box">
-                {!isLoading && (
-                    <div>
-                        <div className="icon-box__icon">{icon}</div>
-                        <div className="icon-box__content">{children}</div>
-                    </div>
-                )}
-                {isLoading && <LoadingOverlay />}
-            </div>
-        )
-    }
+function IconBox({ icon, children, isLoading }: IconBoxProps) {
+    return (
+        <div className="icon-box">
+            {!isLoading && (
+                <div>
+                    <div className="icon-box__icon">{icon}</div>
+                    <div className="icon-box__content">{children}</div>
+                </div>
+            )}
+            {isLoading && <LoadingOverlay />}
+        </div>
+    )
 }
 
 export { IconBox }

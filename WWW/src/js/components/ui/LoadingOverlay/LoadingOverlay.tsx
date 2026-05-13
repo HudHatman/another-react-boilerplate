@@ -9,24 +9,20 @@ interface LoadingOverlayProps {
     noBackground?: boolean
 }
 
-class LoadingOverlay extends React.Component<LoadingOverlayProps, null> {
-    render() {
-        const { size, noBackground } = this.props
-
-        return (
-            <div
-                className={cx('loading-overlay-container', {
-                    'loading-overlay--size-xs': size === 'xs',
-                    'loading-overlay--no-background': noBackground === true,
-                })}
-            >
-                <div className={cx('spinner')}>
-                    <div className={cx('double-bounce1')} />
-                    <div className={cx('double-bounce2')} />
-                </div>
+function LoadingOverlay({ size, noBackground }: LoadingOverlayProps) {
+    return (
+        <div
+            className={cx('loading-overlay-container', {
+                'loading-overlay--size-xs': size === 'xs',
+                'loading-overlay--no-background': noBackground === true,
+            })}
+        >
+            <div className={cx('spinner')}>
+                <div className={cx('double-bounce1')} />
+                <div className={cx('double-bounce2')} />
             </div>
-        )
-    }
+        </div>
+    )
 }
 
 export { LoadingOverlay }

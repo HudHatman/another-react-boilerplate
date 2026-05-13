@@ -201,43 +201,35 @@ interface TabProps {
     setActiveTab?(): any
 }
 
-export class Tab extends React.Component<TabProps, null> {
-    constructor(props) {
-        super(props)
-    }
+export function Tab({ children, name }: TabProps) {
+    return (
+        <AppContext.Consumer>
+            {({ registerTab, tabs, setActiveTab, activeTab, triggersElement, contentElement, contentHeight } = {}) => {
+                registerTab(name)
 
-    render() {
-        const { children, name } = this.props
-
-        return (
-            <AppContext.Consumer>
-                {({ registerTab, tabs, setActiveTab, activeTab, triggersElement, contentElement, contentHeight } = {}) => {
-                    registerTab(name)
-
-                    return (
-                        <AppContext.Provider
-                            value={{
-                                tabName: name,
-                                activateTab: () => {
-                                    setActiveTab(name)
-                                },
-                                changeTab: (name) => {
-                                    setActiveTab(name)
-                                },
-                                tabs,
-                                activeTab,
-                                triggersElement,
-                                contentElement,
-                                contentHeight,
-                            }}
-                        >
-                            {children}
-                        </AppContext.Provider>
-                    )
-                }}
-            </AppContext.Consumer>
-        )
-    }
+                return (
+                    <AppContext.Provider
+                        value={{
+                            tabName: name,
+                            activateTab: () => {
+                                setActiveTab(name)
+                            },
+                            changeTab: (name) => {
+                                setActiveTab(name)
+                            },
+                            tabs,
+                            activeTab,
+                            triggersElement,
+                            contentElement,
+                            contentHeight,
+                        }}
+                    >
+                        {children}
+                    </AppContext.Provider>
+                )
+            }}
+        </AppContext.Consumer>
+    )
 }
 
 interface TriggerProps {
@@ -247,82 +239,67 @@ interface TriggerProps {
     onClick?(): any
 }
 
-export class Trigger extends React.Component<TriggerProps, null> {
-    constructor(props) {
-        super(props)
-    }
-
-    render() {
-        const { children, noTab, onClick, hidden } = this.props
-        return (
-            <AppContext.Consumer>
-                {({ tabName, activateTab, activeTab, triggersElement } = {}) => {
-                    return createPortal(
-                        <li
-                            className={cx('component-tabs__tabs__header__triggers__trigger')}
-                            style={{
-                                display: hidden ? 'none' : 'inherit',
+export function Trigger({ children, noTab, onClick, hidden }: TriggerProps) {
+    return (
+        <AppContext.Consumer>
+            {({ tabName, activateTab, activeTab, triggersElement } = {}) => {
+                return createPortal(
+                    <li
+                        className={cx('component-tabs__tabs__header__triggers__trigger')}
+                        style={{
+                            display: hidden ? 'none' : 'inherit',
+                        }}
+                    >
+                        <div
+                            onClick={() => {
+                                if (!noTab) {
+                                    activateTab()
+                                }
+                                if (_.isFunction(onClick)) {
+                                    onClick()
+                                }
                             }}
+                            className={cx('component-tabs__tabs__header__triggers__trigger__link', {
+                                'component-tabs__tabs__header__triggers__trigger__link--is-active': _.get(activeTab, 'tabName') === tabName,
+                            })}
                         >
-                            <div
-                                onClick={() => {
-                                    if (!noTab) {
-                                        activateTab()
-                                    }
-                                    if (_.isFunction(onClick)) {
-                                        onClick()
-                                    }
-                                }}
-                                className={cx('component-tabs__tabs__header__triggers__trigger__link', {
-                                    'component-tabs__tabs__header__triggers__trigger__link--is-active': _.get(activeTab, 'tabName') === tabName,
-                                })}
-                            >
-                                <a>
-                                    <span>{children}</span>
-                                </a>
-                            </div>
-                        </li>,
-                        triggersElement,
-                    )
-                }}
-            </AppContext.Consumer>
-        )
-    }
+                            <a>
+                                <span>{children}</span>
+                            </a>
+                        </div>
+                    </li>,
+                    triggersElement,
+                )
+            }}
+        </AppContext.Consumer>
+    )
 }
 
 interface ContentProps {
     children?: any
 }
 
-export class Content extends React.Component<ContentProps, null> {
-    constructor(props) {
-        super(props)
-    }
+export function Content({ children }: ContentProps) {
+    return (
+        <AppContext.Consumer>
+            {({ contentElement, activeTab, tabName, changeTab } = {}) => {
+                if (_.get(activeTab, 'tabName') === tabName) {
+                    const Component = () => (
+                        <div
+                            className={cx({
+                                'component-tabs__content__outer__inner__tab': true,
+                                'component-tabs__content__outer__inner__tab--is-active': _.get(activeTab, 'tabName') === tabName,
+                            })}
+                        >
+                            {_.isFunction(children) && children({ changeTab })}
+                            {!_.isFunction(children) && children}
+                        </div>
+                    )
 
-    render() {
-        const { children } = this.props
-
-        return (
-            <AppContext.Consumer>
-                {({ contentElement, activeTab, tabName, changeTab } = {}) => {
-                    if (_.get(activeTab, 'tabName') === tabName) {
-                        const Component = () => (
-                            <div
-                                className={cx({
-                                    'component-tabs__content__outer__inner__tab': true,
-                                    'component-tabs__content__outer__inner__tab--is-active': _.get(activeTab, 'tabName') === tabName,
-                                })}
-                            >
-                                {_.isFunction(children) && children({ changeTab })}
-                                {!_.isFunction(children) && children}
-                            </div>
-                        )
-
-                        return createPortal(<Component />, contentElement)
-                    }
-                    return null
-                }}
-            </AppContext.Consumer>
-        )
-    }
+                    return createPortal(<Component />, contentElement)
+                }
+                return null
+            }}
+        </AppContext.Consumer>
+    )
 }

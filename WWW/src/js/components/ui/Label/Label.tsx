@@ -25,10 +25,24 @@ interface LabelProps {
     onClick?: Function
 }
 
-class Label extends React.Component<LabelProps, null> {
-    renderClassName({ cardSize, dropdownSize, accordionSize } = {}) {
-        const { color = 'default', className, onClick, rounded, roundless, block, href, iconOnly, striped, outline, arrow, size } = this.props
-
+function Label({
+    color = 'default',
+    children,
+    style = {},
+    className,
+    onClick,
+    rounded,
+    roundless,
+    block,
+    href,
+    iconOnly,
+    striped,
+    outline,
+    arrow,
+    size,
+    ...props
+}: LabelProps) {
+    const renderClassName = ({ cardSize, dropdownSize, accordionSize } = {}) => {
         return cx('component-label', {
             [className]: className,
             [`component-label--color-${color}`]: color,
@@ -45,65 +59,45 @@ class Label extends React.Component<LabelProps, null> {
         })
     }
 
-    render() {
-        const { disableContext } = this.props
+    const { disableContext } = props
 
-        return (
-            <AppContext.Consumer>
-                {({ cardSize, dropdownSize, accordionSize } = {}) => {
-                    const {
-                        children,
-                        color = 'default',
-                        className,
-                        rounded,
-                        roundless,
-                        block,
-                        href,
-                        striped,
-                        iconOnly,
-                        outline,
-                        size = 'md',
-                        arrow,
-                        style = {},
-                        onClick,
-                        ...props
-                    } = this.props
-
-                    if (href) {
-                        return (
-                            <Link
-                                to={href}
-                                className={this.renderClassName(
-                                    disableContext
-                                        ? {}
-                                        : {
-                                              cardSize,
-                                              dropdownSize,
-                                              accordionSize,
-                                          },
-                                )}
-                                {...props}
-                            >
-                                {children}
-                            </Link>
-                        )
-                    }
-
+    return (
+        <AppContext.Consumer>
+            {({ cardSize, dropdownSize, accordionSize } = {}) => {
+                if (href) {
                     return (
-                        <div
-                            className={this.renderClassName(disableContext ? {} : { cardSize, dropdownSize, accordionSize })}
-                            style={style}
-                            onClick={onClick}
+                        <Link
+                            to={href}
+                            className={renderClassName(
+                                disableContext
+                                    ? {}
+                                    : {
+                                          cardSize,
+                                          dropdownSize,
+                                          accordionSize,
+                                      },
+                            )}
                             {...props}
                         >
                             {children}
-                            {arrow && <ArrowIcon />}
-                        </div>
+                        </Link>
                     )
-                }}
-            </AppContext.Consumer>
-        )
-    }
+                }
+
+                return (
+                    <div
+                        className={renderClassName(disableContext ? {} : { cardSize, dropdownSize, accordionSize })}
+                        style={style}
+                        onClick={onClick}
+                        {...props}
+                    >
+                        {children}
+                        {arrow && <ArrowIcon />}
+                    </div>
+                )
+            }}
+        </AppContext.Consumer>
+    )
 }
 
 export { Label }

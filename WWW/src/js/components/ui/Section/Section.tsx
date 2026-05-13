@@ -9,16 +9,12 @@ interface SectionProps {
     style?: object
 }
 
-class Section extends React.Component<SectionProps, null> {
-    render() {
-        const { children, style } = this.props
-
-        return (
-            <div className={cx('component-section')} style={style}>
-                <div className={cx('component-section__content')}>{children}</div>
-            </div>
-        )
-    }
+function Section({ children, style }: SectionProps) {
+    return (
+        <div className={cx('component-section')} style={style}>
+            <div className={cx('component-section__content')}>{children}</div>
+        </div>
+    )
 }
 
 export { Section }
