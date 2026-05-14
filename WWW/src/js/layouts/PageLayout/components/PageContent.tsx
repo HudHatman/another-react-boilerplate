@@ -9,24 +9,20 @@ interface PageContentProps {
     className?: string
 }
 
-class PageContent extends React.Component<PageContentProps, null> {
-    componentDidMount() {
+function PageContent({ children, className }: PageContentProps) {
+    React.useEffect(() => {
         window.scrollTo(0, 0)
-    }
+    }, [])
 
-    render() {
-        const { children, className } = this.props
-
-        return (
-            <div
-                className={cx('layout__container__content__content', {
-                    [className]: className,
-                })}
-            >
-                {children}
-            </div>
-        )
-    }
+    return (
+        <div
+            className={cx('layout__container__content__content', {
+                [className]: className,
+            })}
+        >
+            {children}
+        </div>
+    )
 }
 
 export { PageContent }

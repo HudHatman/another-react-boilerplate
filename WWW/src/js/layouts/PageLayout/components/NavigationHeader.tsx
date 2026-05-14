@@ -8,18 +8,14 @@ interface NavigationHeaderProps {
     caption: any
 }
 
-class NavigationHeader extends React.Component<NavigationHeaderProps, null> {
-    render() {
-        const { caption } = this.props
-
-        return (
-            <li className={cx('layout__sidebar__content__navigation__links__links__header')}>
-                <h3>
-                    <span>{caption}</span>
-                </h3>
-            </li>
-        )
-    }
+function NavigationHeader({ caption }: NavigationHeaderProps) {
+    return (
+        <li className={cx('layout__sidebar__content__navigation__links__links__header')}>
+            <h3>
+                <span>{caption}</span>
+            </h3>
+        </li>
+    )
 }
 
 export { NavigationHeader }

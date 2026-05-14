@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators, compose } from 'redux'
 import { AuthManager } from '../../../containers'
 import { withRouter } from '../../../helpers/router'
-import { selectors } from '../../../reducers/cms-pages'
 
 interface UsersManagerProps {
     children: any
@@ -14,28 +13,37 @@ interface UsersManagerProps {
     uploadProgress: number
     uploadFiles: Function
     editFile: Function
+    files: any
+    setUploadProgress: Function
 }
 
-class MediaManagerBase extends React.Component<UsersManagerProps, null> {
-    render() {
-        const { children, files, setIsLoading, isLoading, deleteFile, uploadProgress, uploadFiles, editFile, setUploadProgress } = this.props
-        const renderProps = {
-            files,
-            setIsLoading,
-            isLoading,
-            deleteFile,
-            uploadProgress,
-            uploadFiles,
-            editFile,
-            setUploadProgress,
-        }
-
-        return (
-            <>
-                <AuthManager>{() => <>{children(renderProps)}</>}</AuthManager>
-            </>
-        )
+function MediaManagerBase({
+    children,
+    files,
+    setIsLoading,
+    isLoading,
+    deleteFile,
+    uploadProgress,
+    uploadFiles,
+    editFile,
+    setUploadProgress,
+}: UsersManagerProps) {
+    const renderProps = {
+        files,
+        setIsLoading,
+        isLoading,
+        deleteFile,
+        uploadProgress,
+        uploadFiles,
+        editFile,
+        setUploadProgress,
     }
+
+    return (
+        <>
+            <AuthManager>{() => <>{children(renderProps)}</>}</AuthManager>
+        </>
+    )
 }
 
 const mapStateToProps = (state) => ({

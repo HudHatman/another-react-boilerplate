@@ -11,24 +11,21 @@ interface ConnectionErrorModalProps {
     close: Function
 }
 
-class ConnectionErrorModal extends React.Component<ConnectionErrorModalProps, null> {
-    render() {
-        const { visible, message, close } = this.props
-        return (
-            <Modal.Container visible={visible} color={'danger'}>
-                <Modal.Header>Connection Error</Modal.Header>
-                <Modal.Body>
-                    <div>
-                        <p>{message}</p>
+function ConnectionErrorModal({ visible, message, close }: ConnectionErrorModalProps) {
+    return (
+        <Modal.Container visible={visible} color={'danger'}>
+            <Modal.Header>Connection Error</Modal.Header>
+            <Modal.Body>
+                <div>
+                    <p>{message}</p>
 
-                        <Button color={'secondary'} block onClick={() => close()}>
-                            <span>OK</span>
-                        </Button>
-                    </div>
-                </Modal.Body>
-            </Modal.Container>
-        )
-    }
+                    <Button color={'secondary'} block onClick={() => close()}>
+                        <span>OK</span>
+                    </Button>
+                </div>
+            </Modal.Body>
+        </Modal.Container>
+    )
 }
 
 export { ConnectionErrorModal }

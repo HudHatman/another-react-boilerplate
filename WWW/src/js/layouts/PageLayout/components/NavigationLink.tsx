@@ -15,60 +15,39 @@ interface NavigationLinkProps {
     nested: any
     href: string
     componentType: any
+    setNested: (value: boolean) => void
+    nestedIds: Array<string>
+    nestedId: string
 }
 
 interface NavigationLinkState {
     expanded: boolean
 }
 
-class NavigationLink extends React.Component<NavigationLinkProps, NavigationLinkState> {
-    render() {
-        const { children, href, icon, active, nested, setNested, nestedIds, nestedId } = this.props
+function NavigationLink({ children, href, icon, active, nested, setNested, nestedIds, nestedId }: NavigationLinkProps) {
+    const isExpanded = nestedIds.includes(nestedId) || active
 
-        const isExpanded = nestedIds.includes(nestedId) || active
+    const content = (
+        <div>
+            <span className={cx('layout__sidebar__content__navigation__links__link__icon')}>{icon}</span>
+            <span className={cx('layout__sidebar__content__navigation__links__link__caption')}>{children}</span>
+            {!_.isEmpty(nested) && (
+                <span className={cx('layout__sidebar__content__navigation__links__link__nested')}>
+                    {!isExpanded && <AiOutlineRight />}
+                    {!!isExpanded && <AiOutlineDown />}
+                </span>
+            )}
+        </div>
+    )
 
-        const content = (
-            <div>
-                <span className={cx('layout__sidebar__content__navigation__links__link__icon')}>{icon}</span>
-                <span className={cx('layout__sidebar__content__navigation__links__link__caption')}>{children}</span>
-                {!_.isEmpty(nested) && (
-                    <span className={cx('layout__sidebar__content__navigation__links__link__nested')}>
-                        {!isExpanded && <AiOutlineRight />}
-                        {!!isExpanded && <AiOutlineDown />}
-                    </span>
-                )}
-            </div>
-        )
-
-        if (!href) {
-            return (
-                <li
-                    className={cx('layout__sidebar__content__navigation__links__link', {
-                        'layout__sidebar__content__navigation__links__link--active': active,
-                    })}
-                >
-                    <a
-                        onClick={() => {
-                            if (!_.isEmpty(nested)) {
-                                setNested(nestedId)
-                            }
-                        }}
-                    >
-                        {content}
-                    </a>
-                    {!_.isEmpty(nested) && isExpanded && <NavigationItems items={nested} setNested={setNested} nestedIds={nestedIds} />}
-                </li>
-            )
-        }
-
+    if (!href) {
         return (
             <li
                 className={cx('layout__sidebar__content__navigation__links__link', {
                     'layout__sidebar__content__navigation__links__link--active': active,
                 })}
             >
-                <Link
-                    to={href}
+                <a
                     onClick={() => {
                         if (!_.isEmpty(nested)) {
                             setNested(nestedId)
@@ -76,11 +55,31 @@ class NavigationLink extends React.Component<NavigationLinkProps, NavigationLink
                     }}
                 >
                     {content}
-                </Link>
+                </a>
                 {!_.isEmpty(nested) && isExpanded && <NavigationItems items={nested} setNested={setNested} nestedIds={nestedIds} />}
             </li>
         )
     }
+
+    return (
+        <li
+            className={cx('layout__sidebar__content__navigation__links__link', {
+                'layout__sidebar__content__navigation__links__link--active': active,
+            })}
+        >
+            <Link
+                to={href}
+                onClick={() => {
+                    if (!_.isEmpty(nested)) {
+                        setNested(nestedId)
+                    }
+                }}
+            >
+                {content}
+            </Link>
+            {!_.isEmpty(nested) && isExpanded && <NavigationItems items={nested} setNested={setNested} nestedIds={nestedIds} />}
+        </li>
+    )
 }
 
 export { NavigationLink }

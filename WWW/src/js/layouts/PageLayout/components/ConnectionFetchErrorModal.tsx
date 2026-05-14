@@ -16,25 +16,22 @@ interface ConnectionFetchErrorModalProps {
     }
 }
 
-class ConnectionFetchErrorModal extends React.Component<ConnectionFetchErrorModalProps, null> {
-    render() {
-        const { visible, message, close, data: { message: dataMessage, file, line } = {} } = this.props
-        return (
-            <Modal.Container visible={visible} color={'danger'}>
-                <Modal.Header closeIcon close={close}>
-                    500 Internal Server Error
-                </Modal.Header>
-                <Modal.Body>
-                    <div>
-                        <p>{message}</p>
-                        <p>{dataMessage}</p>
-                        <p>File: {file}</p>
-                        <p>Line: {line}</p>
-                    </div>
-                </Modal.Body>
-            </Modal.Container>
-        )
-    }
+function ConnectionFetchErrorModal({ visible, message, close, data: { message: dataMessage, file, line } = {} }: ConnectionFetchErrorModalProps) {
+    return (
+        <Modal.Container visible={visible} color={'danger'}>
+            <Modal.Header closeIcon close={close}>
+                500 Internal Server Error
+            </Modal.Header>
+            <Modal.Body>
+                <div>
+                    <p>{message}</p>
+                    <p>{dataMessage}</p>
+                    <p>File: {file}</p>
+                    <p>Line: {line}</p>
+                </div>
+            </Modal.Body>
+        </Modal.Container>
+    )
 }
 
 export { ConnectionFetchErrorModal }

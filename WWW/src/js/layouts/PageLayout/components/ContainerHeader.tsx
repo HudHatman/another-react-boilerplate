@@ -8,12 +8,8 @@ interface ContainerHeaderProps {
     children: any
 }
 
-class ContainerHeader extends React.Component<ContainerHeaderProps, null> {
-    render() {
-        const { children } = this.props
-
-        return <div className={cx('layout__container__content__header')}>{children}</div>
-    }
+function ContainerHeader({ children }: ContainerHeaderProps) {
+    return <div className={cx('layout__container__content__header')}>{children}</div>
 }
 
 export { ContainerHeader }

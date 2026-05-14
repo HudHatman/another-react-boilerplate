@@ -20,53 +20,45 @@ interface SidebarHeaderProps {
     setLayoutOption(name: string, value: boolean): any
 }
 
-class SidebarHeaderBase extends React.Component<SidebarHeaderProps, null> {
-    render() {
-        const {
-            children,
-            layout: { floatingSidebar, sidebarExpanded },
-            setLayoutOption,
-        } = this.props
-
-        return (
+function SidebarHeaderBase({ children, layout: { floatingSidebar, sidebarExpanded }, setLayoutOption }: SidebarHeaderProps) {
+    return (
+        <div
+            className={cx('layout__header', {
+                [cx('layout__header--floating')]: floatingSidebar,
+                [cx('layout__header--expanded')]: sidebarExpanded,
+            })}
+        >
             <div
-                className={cx('layout__header', {
-                    [cx('layout__header--floating')]: floatingSidebar,
-                    [cx('layout__header--expanded')]: sidebarExpanded,
-                })}
+                className={cx('layout__header__logo')}
+                onMouseOver={() => {
+                    setLayoutOption('sidebarExpanded', true)
+                }}
+                onMouseOut={() => {
+                    setLayoutOption('sidebarExpanded', false)
+                }}
             >
-                <div
-                    className={cx('layout__header__logo')}
-                    onMouseOver={() => {
-                        setLayoutOption('sidebarExpanded', true)
-                    }}
-                    onMouseOut={() => {
-                        setLayoutOption('sidebarExpanded', false)
+                <Link to="/">
+                    <h1 className={cx('layout__header__logo__brand')}>{children}</h1>
+                </Link>
+                <span
+                    className={cx('layout__header__logo__toggle')}
+                    onClick={() => {
+                        setLayoutOption('floatingSidebar', !floatingSidebar)
+                        setLayoutOption('sidebarExpanded', !sidebarExpanded)
                     }}
                 >
-                    <Link to="/">
-                        <h1 className={cx('layout__header__logo__brand')}>{children}</h1>
-                    </Link>
-                    <span
-                        className={cx('layout__header__logo__toggle')}
-                        onClick={() => {
-                            setLayoutOption('floatingSidebar', !floatingSidebar)
-                            setLayoutOption('sidebarExpanded', !sidebarExpanded)
-                        }}
-                    >
-                        <ToggleIcon />
-                    </span>
-                </div>
-                <div className={cx('layout__header__bar')}>
-                    <div className={cx('layout__header__bar__left')} />
-                    <div className={cx('layout__header__bar__right')}>
-                        <SidebarHeaderNotifications />
-                        <SidebarHeaderUser />
-                    </div>
+                    <ToggleIcon />
+                </span>
+            </div>
+            <div className={cx('layout__header__bar')}>
+                <div className={cx('layout__header__bar__left')} />
+                <div className={cx('layout__header__bar__right')}>
+                    <SidebarHeaderNotifications />
+                    <SidebarHeaderUser />
                 </div>
             </div>
-        )
-    }
+        </div>
+    )
 }
 
 const SidebarHeader = connect(

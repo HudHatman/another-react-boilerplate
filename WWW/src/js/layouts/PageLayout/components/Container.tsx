@@ -15,25 +15,18 @@ interface ContainerProps {
     }
 }
 
-class ContainerBase extends React.Component<ContainerProps, null> {
-    render() {
-        const {
-            children,
-            layout: { floatingSidebar, sidebarExpanded },
-        } = this.props
-
-        return (
-            <div
-                className={cx('layout__container', {
-                    'layout__container--floating': floatingSidebar,
-                    'layout__container--sidebar-expanded': sidebarExpanded,
-                })}
-            >
-                <div className={cx('layout__container__content')}>{children}</div>
-                <Footer floatingSidebar={floatingSidebar} />
-            </div>
-        )
-    }
+function ContainerBase({ children, layout: { floatingSidebar, sidebarExpanded } }: ContainerProps) {
+    return (
+        <div
+            className={cx('layout__container', {
+                'layout__container--floating': floatingSidebar,
+                'layout__container--sidebar-expanded': sidebarExpanded,
+            })}
+        >
+            <div className={cx('layout__container__content')}>{children}</div>
+            <Footer floatingSidebar={floatingSidebar} />
+        </div>
+    )
 }
 
 const Container = connect((state) => {

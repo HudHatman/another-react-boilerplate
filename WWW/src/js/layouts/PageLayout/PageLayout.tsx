@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Outlet } from 'react-router-dom'
 import { Scrollbars } from 'react-custom-scrollbars'
 import { Sidebar, SidebarHeader, Navigation, Container } from './components'
 import { AuthManager, RouteManager } from '../../containers'
@@ -27,80 +28,76 @@ interface PageLayoutProps {
         code: string
     }
     error404: {}
+    connectionFetchError: Object
+    setConnectionErrorModalVisible: (visible: boolean) => void
+    setFetchError: () => void
+    set404error
 }
 
-class PageLayout extends React.Component<PageLayoutProps, null> {
-    render() {
-        const {
-            children,
-            layout: { disableHeader, disableFooter, disableSidebar },
-            connectionErrorModalVisible: { message: connectionErrorMessage, code: connectionErrorCode },
-            connectionFetchError: { message: connectionFetchErrorMessage, statusText: connectionErrorStatusText, data: connectionErrorStatusData },
-            setConnectionErrorModalVisible,
-            setFetchError,
-            error404,
-            set404error,
-        } = this.props
+function PageLayout({
+    children,
+    layout: { disableHeader, disableFooter, disableSidebar },
+    connectionErrorModalVisible: { message: connectionErrorMessage, code: connectionErrorCode },
+    connectionFetchError: { message: connectionFetchErrorMessage, statusText: connectionErrorStatusText, data: connectionErrorStatusData },
+    setConnectionErrorModalVisible,
+    setFetchError,
+    error404,
+    set404error,
+}: PageLayoutProps) {
+    return (
+        <RouteManager>
+            {({ navigate }) => (
+                <AuthManager>
+                    {({ auth: { isLoggedIn, user }, logoff }) => (
+                        <div
+                            className={cx('layout', {
+                                'layout--disable-header': disableHeader,
+                                'layout--disable-footer': disableFooter,
+                                'layout--disable-sidebar': disableSidebar,
+                            })}
+                        >
+                            <ModalWrapper>
+                                <SidebarHeader>
+                                    {config.texts.frameworkName}
+                                    <sub>{config.texts.version}</sub>
+                                </SidebarHeader>
 
-        return (
-            <RouteManager>
-                {({ navigate }) => (
-                    <AuthManager>
-                        {({ auth: { isLoggedIn, user }, logoff }) => (
-                            <div
-                                className={cx('layout', {
-                                    'layout--disable-header': disableHeader,
-                                    'layout--disable-footer': disableFooter,
-                                    'layout--disable-sidebar': disableSidebar,
-                                })}
-                            >
-                                <ModalWrapper>
-                                    <SidebarHeader>
-                                        {config.texts.frameworkName}
-                                        <sub>{config.texts.version}</sub>
-                                    </SidebarHeader>
+                                <Sidebar
+                                    onClickLogout={() => {
+                                        logoff().then(() => {
+                                            navigate('/login')
+                                        })
+                                    }}
+                                    isLoggedIn={isLoggedIn}
+                                    user={user}
+                                >
+                                    <Scrollbars style={{ height: 'calc(100% - 70px)' }}>
+                                        <Navigation />
+                                    </Scrollbars>
+                                </Sidebar>
 
-                                    <Sidebar
-                                        onClickLogout={() => {
-                                            logoff().then(() => {
-                                                navigate('/login')
-                                            })
-                                        }}
-                                        isLoggedIn={isLoggedIn}
-                                        user={user}
-                                    >
-                                        <Scrollbars style={{ height: 'calc(100% - 70px)' }}>
-                                            <Navigation />
-                                        </Scrollbars>
-                                    </Sidebar>
+                                <Container>{children || <Outlet />}</Container>
 
-                                    <Container>{children}</Container>
-
-                                    <Notifications />
-                                    <ConnectionErrorModal
-                                        visible={connectionErrorCode === 'ERR_NETWORK'}
-                                        message={connectionErrorCode}
-                                        close={() => setConnectionErrorModalVisible({})}
-                                    />
-                                    <ConnectionFetchErrorModal
-                                        data={connectionErrorStatusData}
-                                        visible={connectionErrorStatusText === 'Internal Server Error'}
-                                        message={connectionFetchErrorMessage}
-                                        close={() => setFetchError({})}
-                                    />
-                                    <ConnectionFetchError404
-                                        data={error404}
-                                        visible={Object.keys(error404).length > 0}
-                                        close={() => set404error({})}
-                                    />
-                                </ModalWrapper>
-                            </div>
-                        )}
-                    </AuthManager>
-                )}
-            </RouteManager>
-        )
-    }
+                                <Notifications />
+                                <ConnectionErrorModal
+                                    visible={connectionErrorCode === 'ERR_NETWORK'}
+                                    message={connectionErrorCode}
+                                    close={() => setConnectionErrorModalVisible({})}
+                                />
+                                <ConnectionFetchErrorModal
+                                    data={connectionErrorStatusData}
+                                    visible={connectionErrorStatusText === 'Internal Server Error'}
+                                    message={connectionFetchErrorMessage}
+                                    close={() => setFetchError({})}
+                                />
+                                <ConnectionFetchError404 data={error404} visible={Object.keys(error404).length > 0} close={() => set404error({})} />
+                            </ModalWrapper>
+                        </div>
+                    )}
+                </AuthManager>
+            )}
+        </RouteManager>
+    )
 }
 
 export { PageLayout }

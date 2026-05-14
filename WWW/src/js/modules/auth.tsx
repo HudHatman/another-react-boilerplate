@@ -35,12 +35,19 @@ class UserIsAuthenticatedRouteBase extends React.Component<UserIsAuthenticatedRo
         } = this.props
 
         if (!isLoggedIn) {
-            const { email, token } = LocalStorage.queryAll('LoginFormContainer', { query: { ID: 1 } })[0]
+            const loginData = LocalStorage.queryAll('LoginFormContainer', { query: { ID: 1 } })[0]
+
+            if (!loginData) {
+                navigate(`/login?back=${pathname}${encodeURIComponent(search || '')}`)
+                return
+            }
+
+            const { email, token } = loginData
 
             loginWithToken(email, token).then(
                 () => {},
                 () => {
-                    navigate(`/login?back=${pathname}${encodeURIComponent(search)}`)
+                    navigate(`/login?back=${pathname}${encodeURIComponent(search || '')}`)
                 },
             )
         }
@@ -53,13 +60,21 @@ class UserIsAuthenticatedRouteBase extends React.Component<UserIsAuthenticatedRo
             loginWithToken,
             location: { pathname, search },
         } = this.props
+
         if (!isLoggedIn && prevProps.isLoggedIn) {
-            const { email, token } = LocalStorage.queryAll('LoginFormContainer', { query: { ID: 1 } })[0]
+            const loginData = LocalStorage.queryAll('LoginFormContainer', { query: { ID: 1 } })[0]
+
+            if (!loginData) {
+                navigate(`/login?back=${pathname}${encodeURIComponent(search || '')}&reason=401`)
+                return
+            }
+
+            const { email, token } = loginData
 
             loginWithToken(email, token).then(
                 () => {},
                 () => {
-                    navigate(`/login?back=${pathname}${encodeURIComponent(search)}&reason=401`)
+                    navigate(`/login?back=${pathname}${encodeURIComponent(search || '')}&reason=401`)
                 },
             )
         }
@@ -72,32 +87,17 @@ class UserIsAuthenticatedRouteBase extends React.Component<UserIsAuthenticatedRo
             return null
         }
 
-        const Component = createReactClass({
-            render: () => {
-                return (
-                    <AuthorizationManager>
-                        {({ canByPermission }) => (
-                            <>
-                                {!!permission && canByPermission(permission) && children}
-                                {!!permission && !canByPermission(permission) && <Page401 />}
-                                {!permission && children}
-                            </>
-                        )}
-                    </AuthorizationManager>
-                )
-            },
-        })
-
-        return <Component />
-
-        /*return <AuthorizationManager>
-            {({canByPermission}) => (
-                <>{!!permission && canByPermission(permission) && children}
-                    {!!permission && !canByPermission(permission) && <Page401/>}
-                    {!permission && children}
-                </>
-            )}
-        </AuthorizationManager>*/
+        return (
+            <AuthorizationManager>
+                {({ canByPermission }) => (
+                    <>
+                        {!!permission && canByPermission(permission) && children}
+                        {!!permission && !canByPermission(permission) && <Page401 />}
+                        {!permission && children}
+                    </>
+                )}
+            </AuthorizationManager>
+        )
     }
 }
 

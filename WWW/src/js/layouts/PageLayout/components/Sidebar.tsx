@@ -31,30 +31,23 @@ interface SidebarProps {
 
 interface SidebarState {}
 
-class SidebarBase extends React.Component<SidebarProps, SidebarState> {
-    render() {
-        const {
-            children,
-            layout: { floatingSidebar, sidebarExpanded },
-        } = this.props
-
-        return (
-            <div
-                className={cx('layout__sidebar', {
-                    'layout__sidebar--floating': floatingSidebar,
-                    'layout__sidebar--expanded': sidebarExpanded,
-                })}
-                onMouseEnter={() => {
-                    //setLayoutOption('sidebarExpanded', true)
-                }}
-                onMouseLeave={() => {
-                    //setLayoutOption('sidebarExpanded', false)
-                }}
-            >
-                <div className={cx('layout__sidebar__content')}>{children}</div>
-            </div>
-        )
-    }
+function SidebarBase({ children, layout: { floatingSidebar, sidebarExpanded } }: SidebarProps) {
+    return (
+        <div
+            className={cx('layout__sidebar', {
+                'layout__sidebar--floating': floatingSidebar,
+                'layout__sidebar--expanded': sidebarExpanded,
+            })}
+            onMouseEnter={() => {
+                //setLayoutOption('sidebarExpanded', true)
+            }}
+            onMouseLeave={() => {
+                //setLayoutOption('sidebarExpanded', false)
+            }}
+        >
+            <div className={cx('layout__sidebar__content')}>{children}</div>
+        </div>
+    )
 }
 
 const Sidebar = connect(
