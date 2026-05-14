@@ -6,7 +6,7 @@ import { FaAngleDown as ArrowIconDown, FaAngleUp as ArrowIconUp } from 'react-ic
 
 const cx = classNames.bind(styles)
 
-function ItemHeader({children: any}) {
+function ItemHeader({ children: any }) {
     return (
         <AppContext.Consumer>
             {({ open, name, isOpened, close, size, type, closeIcon }) => {

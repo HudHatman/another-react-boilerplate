@@ -1,10 +1,8 @@
-import * as React from 'react'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { AddPermissionForm as FormComponent } from './AddPermissionForm'
-import { reduxForm, formValueSelector } from 'redux-form'
+import { formValueSelector, reduxForm, SubmissionError } from 'redux-form'
 import { processAPIerrorResponseToFormErrors } from '../../../../modules/http'
-import { SubmissionError } from 'redux-form'
 
 const validate = (values) => {
     const errors = {}

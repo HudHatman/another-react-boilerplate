@@ -1,12 +1,11 @@
 import * as React from 'react'
-import { RouteManager } from '../../../containers'
+import { AuthorizationManager, NotificationsManager, RouteManager, TitleManager, UsersManager } from '../../../containers'
 import { Col, Row } from '../../../components'
 import { PageContent } from '../../../layouts/PageLayout/components'
 import Header from './Header'
 import Edit from './Edit/Edit'
 import Permissions from './Permissions'
 import AddPermissions from './AddPermissions'
-import { NotificationsManager, UsersManager, TitleManager, AuthorizationManager } from '../../../containers'
 import Users from './Users'
 import AddUsers from './AddUsers'
 

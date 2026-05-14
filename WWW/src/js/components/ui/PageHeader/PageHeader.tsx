@@ -179,6 +179,6 @@ interface ActionsProps {
     children: any
 }
 
-export function Actions({children}: ActionsProps) {
+export function Actions({ children }: ActionsProps) {
     return <AppContext.Consumer>{({ actionsElement }) => createPortal(children, actionsElement)}</AppContext.Consumer>
 }

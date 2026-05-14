@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { PageHeader } from '../../../components'
 import { FaHome as HomeIcon } from 'react-icons/fa'
-import { RouteManager, AuthorizationManager } from '../../../containers'
+import { AuthorizationManager, RouteManager } from '../../../containers'
 import { ButtonAdd } from '../../../components/common/ButtonAdd'
 import { UserIcon } from '../../../components/icons'
 

@@ -1,11 +1,11 @@
 import * as React from 'react'
+import { useState } from 'react'
 import classNames from 'classnames/bind'
 import { AppContext } from '../../../../index'
 import styles from '../../../../assets/scss/components/_accordion.scss'
 import { ItemContent } from './ItemContent'
 import { ItemHeader } from './ItemHeader'
 import { Item } from './Item'
-import { useState } from 'react'
 
 const cx = classNames.bind(styles)
 
@@ -22,12 +22,12 @@ interface AccordionContainerProps {
 
 function Container(props: AccordionContainerProps) {
     const { children, color, rounded, size, separated, type = 'boxed', closeIcon } = props
-    const [registered, setRegistered] = useState({});
+    const [registered, setRegistered] = useState({})
     const [opened, setOpened] = useState('')
 
     const registerItem = ({ name }) => {
-        const r = {...registered, [name]: true}
-        setRegistered(r);
+        const r = { ...registered, [name]: true }
+        setRegistered(r)
     }
 
     const open = (name: string) => {
@@ -39,7 +39,7 @@ function Container(props: AccordionContainerProps) {
     }
 
     const isOpened = (name: string) => {
-        return opened === name;
+        return opened === name
     }
 
     return (

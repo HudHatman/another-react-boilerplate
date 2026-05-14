@@ -1,10 +1,8 @@
-import * as React from 'react'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { AddForm as FormComponent } from './AddForm'
-import { reduxForm, formValueSelector } from 'redux-form'
+import { formValueSelector, reduxForm, SubmissionError } from 'redux-form'
 import { processAPIerrorResponseToFormErrors } from '../../../../modules/http'
-import { SubmissionError } from 'redux-form'
 
 const onSubmit = (values, _, { setIsLoading, addPermission, addToastNotification, navigate, newUsers = [], reset, clearUsersFromNewPermission }) => {
     return setIsLoading(true).then(() => {

@@ -16,8 +16,8 @@ class UploadTreeFileForm extends React.Component<null, null> {
                     onChange={(e) =>
                         setIsLoading(true).then(() => {
                             uploadFiles(e.target.files, {
-                                'class': className,
-                                'tree_parent_id': treeParentId,
+                                class: className,
+                                tree_parent_id: treeParentId,
                             }).then(() => {
                                 addToastNotification({
                                     type: 'success',
@@ -25,10 +25,9 @@ class UploadTreeFileForm extends React.Component<null, null> {
                                     text: 'Files has been uploaded.',
                                     href: '/cms',
                                 })
-                                setIsLoading(false);
+                                setIsLoading(false)
                             })
                         })
-
                     }
                     multiple
                 />

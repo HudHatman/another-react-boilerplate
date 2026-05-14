@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { PageContent } from '../../../layouts/PageLayout/components'
-import { Row, Col, Card, PageHeader } from '../../../components'
+import { Card, Col, PageHeader, Row } from '../../../components'
 import { IoIosMail as ContactIcon } from 'react-icons/io'
 import { ContactFormContainer } from '../../../components/common/ContactForm/ContactFormContainer'
 

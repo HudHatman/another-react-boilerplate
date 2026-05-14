@@ -1,14 +1,14 @@
 import * as React from 'react'
+import { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
 import _ from 'lodash'
 import { IoIosClose as CloseIcon } from 'react-icons/io'
-import { FaWindowMinimize as MinimizeIcon, FaWindowMaximize as MaximizeIcon } from 'react-icons/fa'
+import { FaWindowMaximize as MaximizeIcon, FaWindowMinimize as MinimizeIcon } from 'react-icons/fa'
 import { Button } from '../Button'
 import { AppContext } from '../../../../index'
 import { LoadingOverlay } from '../LoadingOverlay'
 import styles from '../../../../assets/scss/components/_card.scss'
 import { LocalStorage } from '../../../modules/database'
-import { useEffect, useState } from 'react'
 
 const cx = classNames.bind(styles)
 

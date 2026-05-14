@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { PageHeader, Dropdown, Button } from '../../index'
+import { Button, Dropdown, PageHeader } from '../../index'
 import { FaHome as HomeIcon } from 'react-icons/fa'
 import { RouteManager } from '../../../containers'
 

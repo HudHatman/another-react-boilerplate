@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { useState } from 'react'
 import styles from '../../../../assets/scss/components/_file.scss'
 import classNames from 'classnames/bind'
 import { apiURL } from '../../../helpers/api'
@@ -7,7 +8,6 @@ import { AiOutlineDownload as DownloadIcon } from 'react-icons/ai'
 import { DeleteIcon } from '../../../components/icons'
 import { FileDetailsFormContainer } from './FileDetailsFormContainer'
 import { NotificationsManager } from '../../../containers'
-import { useState } from 'react'
 
 const cx = classNames.bind(styles)
 

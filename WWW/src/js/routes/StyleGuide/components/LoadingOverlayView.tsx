@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { PageContent } from '../../../layouts/PageLayout/components'
-import { Row, Col, Section, LoadingOverlay, Label } from '../../../components'
+import { Col, Label, LoadingOverlay, Row, Section } from '../../../components'
 import { createPresentationTab as _createPresentationTab } from '../../../utils/tabs'
 import { ComponentsPageHeader } from '../../../components/common/ComponentsPageHeader'
 

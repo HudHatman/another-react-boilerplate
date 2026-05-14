@@ -1,4 +1,4 @@
-import { Container, Trigger, Content } from './Popover'
+import { Container, Content, Trigger } from './Popover'
 
 export { Container, Trigger, Content }
 export default { Container, Trigger, Content }

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { RouteManager, NotificationsManager, UsersManager, TitleManager, AuthorizationManager } from '../../../containers'
+import { AuthorizationManager, NotificationsManager, RouteManager, TitleManager, UsersManager } from '../../../containers'
 import { Col, Row } from '../../../components'
 import { PageContent } from '../../../layouts/PageLayout/components'
 import Header from './Header'

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Field } from 'redux-form'
-import { Alert, Button, Card, Col, FormField, Row, Section, Tabs } from '../../../../components'
+import { Button, Card, Col, FormField, Row, Section, Tabs } from '../../../../components'
 import { sortPermissionsByNameAscending } from '../../../../helpers/permissions'
 import { sortUsersByNameAscending } from '../../../../helpers/users'
 import { AddPermission } from '../../../UsersPermissionsAdd/components/Add/Index'

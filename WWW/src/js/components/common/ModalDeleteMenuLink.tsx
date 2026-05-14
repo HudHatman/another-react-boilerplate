@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { DeleteUserRole, Role, SetIsLoading, User } from '../../../types.d'
 import { ModalConfirm } from './ModalConfirm/ModalConfirm'
 import { NotificationsManager } from '../../containers'
 

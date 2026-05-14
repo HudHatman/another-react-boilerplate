@@ -1,8 +1,7 @@
 import * as React from 'react'
-import { Dropdown, PageHeader, Button } from '../../../components'
+import { Button, Dropdown, PageHeader } from '../../../components'
 import { FaHome as HomeIcon } from 'react-icons/fa'
 import { AuthorizationManager } from '../../../containers'
-import { PagesIcon } from '../../../components/icons'
 
 interface HeaderProps {
     currentNodeParents: Array<Object>

@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Col, Row } from '../../../components'
 import { PageContent } from '../../../layouts/PageLayout/components'
 import { Header } from './Header'
-import { TitleManager, RouteManager } from '../../../containers'
+import { RouteManager, TitleManager } from '../../../containers'
 import { MediaManager } from '../../Media/containers/MediaManager'
 import { EditSettings } from './Edit/Index'
 

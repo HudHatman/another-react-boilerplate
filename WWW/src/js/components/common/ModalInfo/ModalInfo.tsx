@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Button, Col, Modal, Row } from '../../../components'
+
 interface ModalInfoProps {
     children: any
     close: () => void

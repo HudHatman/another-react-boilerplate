@@ -5,7 +5,7 @@ import styles from '../../../../assets/scss/components/_accordion.scss'
 
 const cx = classNames.bind(styles)
 
-function ItemContent({children: any}) {
+function ItemContent({ children: any }) {
     return (
         <AppContext.Consumer>
             {({ isOpened, name }) => {

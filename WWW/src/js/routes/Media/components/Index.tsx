@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { PageContent } from '../../../layouts/PageLayout/components'
-import { RouteManager, NotificationsManager, TitleManager, FiltersManager } from '../../../containers'
+import { FiltersManager, NotificationsManager, RouteManager, TitleManager } from '../../../containers'
 import { Card, Col, LoadingOverlay, Row } from '../../../components'
 import { MediaManager } from '../containers/MediaManager'
 import File from './File'

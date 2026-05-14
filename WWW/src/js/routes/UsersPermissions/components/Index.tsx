@@ -5,7 +5,7 @@ import Header from './Header'
 import { getDefaultFilters } from '../../../helpers/permissions'
 import { createUrlFilters, splitIds } from '../../../helpers/filters'
 import List from './List'
-import { PermissionsManager, FiltersManager, TitleManager, RouteManager } from '../../../containers'
+import { FiltersManager, PermissionsManager, RouteManager, TitleManager } from '../../../containers'
 
 export class UsersPermissions extends React.Component<null, null> {
     render() {

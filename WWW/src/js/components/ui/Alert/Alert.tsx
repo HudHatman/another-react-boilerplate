@@ -1,11 +1,11 @@
 import * as React from 'react'
+import { useState } from 'react'
 import classNames from 'classnames/bind'
 import { IoIosClose as CloseIcon } from 'react-icons/io'
 import _ from 'lodash'
 import { LoadingOverlay } from '../LoadingOverlay'
 import styles1 from '../../../../assets/scss/components/_alert.scss'
 import styles2 from '../../../../assets/scss/_animations.scss'
-import { useState } from 'react'
 
 const cx = classNames.bind({ ...styles1, ...styles2 })
 

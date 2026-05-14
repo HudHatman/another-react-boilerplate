@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { selectors as logsSelectors, actions as logsActions } from '../reducers/logs'
+import { actions as logsActions, selectors as logsSelectors } from '../reducers/logs'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { AuthManager } from './AuthManager'

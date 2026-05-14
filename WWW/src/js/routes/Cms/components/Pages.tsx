@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { PageContent } from '../../../layouts/PageLayout/components'
 import Manager from './Manager'
-import { RouteManager, AuthorizationManager, FiltersManager } from '../../../containers'
+import { AuthorizationManager, FiltersManager, RouteManager } from '../../../containers'
 import Header from './Header'
 import classNames from 'classnames/bind'
 import styles from '../../../../assets/scss/routes/cms.scss'

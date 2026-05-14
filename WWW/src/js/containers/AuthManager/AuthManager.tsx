@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { selectors as authSelectors, actions as authActions } from '../../reducers/auth'
+import { actions as authActions, selectors as authSelectors } from '../../reducers/auth'
 
 interface AuthManagerProps {
     auth: object

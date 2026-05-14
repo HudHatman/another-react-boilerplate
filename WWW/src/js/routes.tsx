@@ -1,7 +1,6 @@
 import * as React from 'react'
-import { Routes, HashRouter as Router, Route } from 'react-router-dom'
-import { PageLayout } from './layouts'
-import { BlankPageLayout } from './layouts'
+import { HashRouter as Router, Route, Routes } from 'react-router-dom'
+import { BlankPageLayout, PageLayout } from './layouts'
 
 import { IndexView } from './routes/Index'
 import { IndexView as LoginView } from './routes/Login'
@@ -11,7 +10,7 @@ import { UserIsAuthenticatedRoute } from './modules/auth'
 import AddCategoryView from './routes/Cms/components/AddCategory'
 import AddDocumentView from './routes/Cms/components/AddDocument'
 import AddLinkView from './routes/Cms/components/AddLink'
-import AddFilesView from "./routes/Cms/components/AddFiles";
+import AddFilesView from './routes/Cms/components/AddFiles'
 import { UsersView } from './routes/Users'
 import { UserRolesView } from './routes/UserRoles'
 import { UsersAccountActivated } from './routes/UsersAccountActivated'
@@ -32,7 +31,7 @@ import { Container } from './containers/Config'
 import { CmsSettingsView } from './routes/CmsSettings'
 import { RegisterView } from './routes/Register'
 import { SystemSettings } from './routes/SystemSettings'
-import { CmsAddMenuView, CmsMenusView, CmsEditMenuView } from './routes/CmsMenus'
+import { CmsAddMenuView, CmsEditMenuView, CmsMenusView } from './routes/CmsMenus'
 
 const App = () => (
     <Router>

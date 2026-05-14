@@ -1,11 +1,12 @@
-import { reduxForm, formValueSelector } from 'redux-form'
+import { formValueSelector, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import LoginForm from './LoginForm'
 import { actions as authActions, selectors as authSelectors } from '../../../reducers/auth'
 import { withRouter } from '../../../helpers/router'
 import { bindActionCreators, compose } from 'redux'
-const { login } = authActions
 import { LocalStorage } from '../../../modules/database'
+
+const { login } = authActions
 
 const validate = ({ username, password }) => {
     const errors = {}

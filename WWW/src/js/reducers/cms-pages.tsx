@@ -77,7 +77,6 @@ const setMenus = (menus) => (dispatch) => {
     })
 }
 
-
 const setMenu = (menu) => (dispatch) => {
     return new Promise((resolve) => {
         dispatch({ type: SET_MENU, payload: menu })

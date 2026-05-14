@@ -1,10 +1,9 @@
 import * as React from 'react'
 import { PageContent } from '../../../layouts/PageLayout/components'
-import { Row, Col, PageHeader } from '../../../components'
+import { Button, Col, Dropdown, Label, PageHeader, Row } from '../../../components'
 import { PageHeaderFormContainer } from './PageHeaderFormContainer'
 import { ComponentsPageHeader } from '../../../components/common/ComponentsPageHeader'
 import { FaHome as HomeIcon } from 'react-icons/fa'
-import { Button, Dropdown, Label } from '../../../components'
 import classNames from 'classnames/bind'
 import styles from '../../../../assets/scss/_helpers.scss'
 

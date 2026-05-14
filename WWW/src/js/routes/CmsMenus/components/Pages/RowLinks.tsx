@@ -16,7 +16,7 @@ export class RowLinks extends React.Component<null, {}> {
     state: {}
     constructor(props) {
         super(props)
-        this.state = {addForm: false};
+        this.state = { addForm: false }
     }
     render() {
         const { links, setIsLoading, fetchMenus, deleteNode, menu } = this.props
@@ -88,7 +88,7 @@ export class RowLinks extends React.Component<null, {}> {
                                                     return (
                                                         <AddLinkFormContainer
                                                             onSubmit={(values) => {
-                                                                setIsLoading(true);
+                                                                setIsLoading(true)
                                                                 addNewMenuLink(menu, values).then(() => {
                                                                     fetchMenus().then(() => {
                                                                         this.setState({ addForm: false }, () => {

@@ -1,7 +1,6 @@
 import * as React from 'react'
 import styles from '../../../../assets/scss/components/_list_manager.scss'
 import classNames from 'classnames/bind'
-import { Table } from '../../index'
 
 const cx = classNames.bind(styles)
 

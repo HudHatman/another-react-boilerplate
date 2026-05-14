@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { PageContent } from '../../../layouts/PageLayout/components'
-import { Row, Col, Section, Button, ButtonGroup } from '../../../components'
+import { Button, ButtonGroup, Col, Row, Section } from '../../../components'
 import { ButtonGroupFormContainer } from './ButtonGroupFormContainer'
 import { createPresentationTab as _createPresentationTab } from '../../../utils/tabs'
 import { ComponentsPageHeader } from '../../../components/common/ComponentsPageHeader'

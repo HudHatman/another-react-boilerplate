@@ -1,8 +1,7 @@
 import * as React from 'react'
 import { PageContent } from '../../../layouts/PageLayout/components'
-import { Row, Col, Section } from '../../../components'
+import { Col, Row, Section, Tabs } from '../../../components'
 import { FaFileImage as ImageIcon } from 'react-icons/fa'
-import { Tabs } from '../../../components'
 import { TabsFormContainer } from './TabsFormContainer'
 import { ComponentsPageHeader } from '../../../components/common/ComponentsPageHeader'
 

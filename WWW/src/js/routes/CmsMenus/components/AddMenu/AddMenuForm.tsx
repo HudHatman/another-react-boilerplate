@@ -2,10 +2,8 @@ import * as React from 'react'
 import { Field } from 'redux-form'
 import { Badge, Card, Col, FormField, LoadingOverlay, Row, Tabs } from '../../../../components'
 import { isPublished } from '../../../../helpers/cms'
-import { LinkIcon, MenuIcon } from '../../../../components/icons'
+import { MenuIcon } from '../../../../components/icons'
 import { ButtonSave } from '../../../../components/common/ButtonSave'
-import { AddLinkFormContainer } from '../../containers/AddLinkFormContainer'
-import SimpleModelCell from '../../../../components/common/SimpleModelCell'
 
 class AddMenuForm extends React.Component {
     render() {

@@ -1,8 +1,7 @@
 import * as React from 'react'
 import { PageContent } from '../../../layouts/PageLayout/components'
-import { Row, Col, Section, Button } from '../../../components'
+import { Button, Col, Modal, Row, Section } from '../../../components'
 import { ComponentsPageHeader } from '../../../components/common/ComponentsPageHeader'
-import { Modal } from '../../../components'
 import { ModalFormContainer } from './ModalFormContainer'
 
 interface ModalViewState {

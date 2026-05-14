@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Badge, Card, Label, LoadingOverlay, Tabs } from '../../../../components'
+import { Badge, Card, LoadingOverlay, Tabs } from '../../../../components'
 import { mergeUserPermissions, sortPermissionsByNameAscending, userPermissionFromRoles } from '../../../../helpers/permissions'
 import { Permission, User } from '../../../../../types.d'
 import PermissionDropdown from '../../../../components/common/PermissionDropdown'

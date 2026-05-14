@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Card, Col, Row } from '../../../components'
 import { PageContent } from '../../../layouts/PageLayout/components'
 import { Header } from './Header'
-import { TitleManager, RouteManager, PermissionsManager } from '../../../containers'
+import { PermissionsManager, RouteManager, TitleManager } from '../../../containers'
 import { EditSettings } from '../../CmsSettings/components/Edit/Index'
 import { PermissionIcon } from '../../../components/icons'
 

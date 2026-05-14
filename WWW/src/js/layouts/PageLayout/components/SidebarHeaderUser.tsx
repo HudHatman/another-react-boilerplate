@@ -2,17 +2,17 @@ import * as React from 'react'
 import classNames from 'classnames/bind'
 import styles from '../../../../assets/scss/layout/_layout.scss'
 import { connect } from 'react-redux'
-import { selectors as authSelectors, actions as authActions } from '../../../reducers/auth'
+import { actions as authActions, selectors as authSelectors } from '../../../reducers/auth'
 import { bindActionCreators } from 'redux'
 import { apiURL } from '../../../helpers/api'
-import { Dropdown, Button } from '../../../components'
+import { Button, Dropdown } from '../../../components'
 import { RouteManager } from '../../../containers'
 
 const cx = classNames.bind(styles)
 
 interface BaseSidebarHeaderUserProps {
-    auth: any,
-    logoff: any,
+    auth: any
+    logoff: any
 }
 
 function BaseSidebarHeaderUser({ auth: { user }, logoff }: BaseSidebarHeaderUserProps) {

@@ -1,9 +1,10 @@
 import * as React from 'react'
 import { Card, LoadingOverlay } from '../../../../components'
 import { EditFormContainer } from './EditFormContainer'
-import { FormContainer, NotificationsManager } from '../../../../containers'
-import { Permission, SetIsLoading } from '../../../../../types.d'
+import { FormContainer } from '../../../../containers'
+import { SetIsLoading } from '../../../../../types.d'
 import AlertNoPermissions from '../../../../components/common/AlertNoPermissions'
+
 interface EditProps {
     isLoading: boolean
     setIsLoading: SetIsLoading

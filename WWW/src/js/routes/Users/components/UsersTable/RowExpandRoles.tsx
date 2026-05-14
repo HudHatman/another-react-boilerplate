@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Col, Table, Row, Typography } from '../../../../components'
+import { Col, Row, Table, Typography } from '../../../../components'
 import { DeleteUserRole, Role, SetIsLoading, User } from '../../../../../types.d'
 import { sortRolesByNameAscending } from '../../../../helpers/roles'
 import RoleDropdown from '../../../../components/common/RoleDropdown'

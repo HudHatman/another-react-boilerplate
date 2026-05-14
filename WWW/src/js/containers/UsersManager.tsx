@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { selectors as usersSelectors, actions as usersActions } from '../reducers/users'
+import { actions as usersActions, selectors as usersSelectors } from '../reducers/users'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { AuthManager } from './AuthManager'

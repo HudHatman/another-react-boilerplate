@@ -1,10 +1,9 @@
 import * as React from 'react'
-import { reduxForm, getFormValues as getFormValuesRedux, SubmissionError } from 'redux-form'
+import { getFormValues as getFormValuesRedux, reduxForm, startSubmit, stopSubmit, SubmissionError } from 'redux-form'
 import _ from 'lodash'
 import { processAPIerrorResponseToFormErrors } from '../../modules/http'
-import { ifDeepDiff, deepDiff } from '../javascript'
+import { deepDiff, ifDeepDiff } from '../javascript'
 import * as moment from 'moment'
-import { startSubmit, stopSubmit } from 'redux-form'
 import config from '../../config'
 
 const TIMEOUT = 1000

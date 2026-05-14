@@ -17,17 +17,17 @@ import { ButtonGroup } from './ui/ButtonGroup'
 import { Label } from './ui/Label'
 import { Radio } from './form/Radio'
 import {
-    Container as PageHeaderContainer,
-    Title as PageHeaderTitle,
+    Actions as PageHeaderActions,
     Breadcrumbs as PageHeaderBreadcrumbs,
     BreadcrumbsItem as PageHeaderBreadcrumbsItem,
-    Actions as PageHeaderActions,
+    Container as PageHeaderContainer,
+    Title as PageHeaderTitle,
 } from './ui/PageHeader'
 import { Breadcrumbs } from './ui/Breadcrumbs'
 import { Copyright } from './common/Copyright'
-import { Container as PopoverContainer, Trigger as PopoverTrigger, Content as PopoverContent } from './ui/Popover'
-import { Container as TabContainer, Content as TabContent, Trigger as TabTrigger, Tab } from './ui/Tabs'
-import { DropdownContainer, DropdownTrigger, DropdownMenu, DropdownItem } from './ui/Dropdown'
+import { Container as PopoverContainer, Content as PopoverContent, Trigger as PopoverTrigger } from './ui/Popover'
+import { Container as TabContainer, Content as TabContent, Tab, Trigger as TabTrigger } from './ui/Tabs'
+import { DropdownContainer, DropdownItem, DropdownMenu, DropdownTrigger } from './ui/Dropdown'
 import { Container as TypographyContainer, Header as TypographyHeader } from './ui/Typography'
 import { Progress } from './ui/Progress'
 import {
@@ -37,18 +37,18 @@ import {
     ItemHeader as AccordionItemHeader,
 } from './ui/Accordion'
 import {
+    ExpandManager,
     Table as TableContainer,
-    Th as ThComponent,
-    THead as THeadComponent,
     TBody as TBodyComponent,
     Td as TdComponent,
-    Tr as TrComponent,
     TFoot as TFootComponent,
-    ExpandManager,
+    Th as ThComponent,
+    THead as THeadComponent,
+    Tr as TrComponent,
 } from './ui/Table'
-import { Container as ListContainer, Item as ListItem, Image as ListImage, ItemContent as ListItemContent } from './ui/List'
+import { Container as ListContainer, Image as ListImage, Item as ListItem, ItemContent as ListItemContent } from './ui/List'
 import { Tooltip } from './ui/Tooltip'
-import { ModalContainer, ModalBody, ModalFooter, ModalHeader, ModalManager, ModalWrapper } from './ui/Modal'
+import { ModalBody, ModalContainer, ModalFooter, ModalHeader, ModalManager, ModalWrapper } from './ui/Modal'
 
 const Tabs = {
     Container: TabContainer,

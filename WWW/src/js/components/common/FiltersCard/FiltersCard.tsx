@@ -7,7 +7,7 @@ import { ModalManager } from '../../ui/Modal'
 import { SaveFiltersModal } from './SaveFiltersModal'
 import { DropdownContainer, DropdownItem, DropdownMenu, DropdownTrigger } from '../../ui/Dropdown'
 import { DeleteIcon, FiltersIcon, ResetIcon, RestoreIcon, SaveIcon } from '../../icons'
-import { ResetFilters, Filters, SetFilter, DeleteSavedFilter, SaveFilters, RestoreSavedFilter, SavedFilters } from '../../../../types.d'
+import { DeleteSavedFilter, Filters, ResetFilters, RestoreSavedFilter, SavedFilters, SaveFilters, SetFilter } from '../../../../types.d'
 
 interface FiltersCardProps {
     name: string

@@ -1,11 +1,10 @@
 import * as React from 'react'
 import { PageContent } from '../../../layouts/PageLayout/components'
 import Manager from '../../Cms/components/Manager'
-import { RouteManager, AuthorizationManager } from '../../../containers'
+import { AuthorizationManager, RouteManager } from '../../../containers'
 import { Header } from './Header'
 import { AddMenuFormContainer } from '../containers/AddMenuFormContainer'
-import { formattedDateTime } from '../../../helpers/date-time'
-import { LinkIcon, MenuIcon } from '../../../components/icons'
+import { MenuIcon } from '../../../components/icons'
 
 export class CmsAddMenuView extends React.Component {
     render() {

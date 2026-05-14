@@ -2,7 +2,7 @@ import * as React from 'react'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { AddMenuForm } from '../components/AddMenu/AddMenuForm'
-import { reduxForm, SubmissionError, formValueSelector } from 'redux-form'
+import { formValueSelector, reduxForm, SubmissionError } from 'redux-form'
 import { processAPIerrorResponseToFormErrors } from '../../../modules/http'
 import { withRouter } from '../../../helpers/router'
 

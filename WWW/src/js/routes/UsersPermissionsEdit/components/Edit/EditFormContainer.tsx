@@ -1,8 +1,6 @@
-import * as React from 'react'
 import { compose } from 'redux'
 import { EditForm as FormComponent } from './EditForm'
-import { reduxForm, SubmissionError } from 'redux-form'
-import { processAPIerrorResponseToFormErrors } from '../../../../modules/http'
+import { reduxForm } from 'redux-form'
 
 const onSubmit = (values, _, { save, fetchPermission, addToastNotification, setIsLoading, permission, initialValues }) => {
     console.log(initialValues)

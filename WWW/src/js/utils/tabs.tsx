@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Row, Col, Card, Button } from '../components'
+import { Button, Card, Col, Row } from '../components'
 import _ from 'lodash'
 import * as Copy from 'copy-to-clipboard'
 

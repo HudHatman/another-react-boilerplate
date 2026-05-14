@@ -1,4 +1,4 @@
-import { DropdownContainer, DropdownTrigger, DropdownMenu, DropdownItem } from './Dropdown'
+import { DropdownContainer, DropdownItem, DropdownMenu, DropdownTrigger } from './Dropdown'
 
 export { DropdownContainer, DropdownTrigger, DropdownMenu, DropdownItem }
 export default {

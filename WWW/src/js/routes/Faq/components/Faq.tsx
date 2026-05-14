@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { PageContent } from '../../../layouts/PageLayout/components'
-import { Col, Row, Card, PageHeader } from '../../../components'
+import { Card, Col, PageHeader, Row } from '../../../components'
 import { FaInfo as InfoIcon } from 'react-icons/fa'
 import config from '../../../config'
 

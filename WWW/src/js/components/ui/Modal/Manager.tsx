@@ -1,10 +1,9 @@
 import * as React from 'react'
+import { ModalContext } from './Wrapper'
 
 interface ModalManagerProps {
     children: any
 }
-
-import { ModalContext } from './Wrapper'
 
 class ModalManager extends React.Component<ModalManagerProps, null> {
     state = {

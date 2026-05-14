@@ -1,5 +1,3 @@
-import * as React from 'react'
-
 // constants
 export const SET_LIST = 'list::set-list'
 export const SET_FILTERS_DATA = 'list::set-filters-data'

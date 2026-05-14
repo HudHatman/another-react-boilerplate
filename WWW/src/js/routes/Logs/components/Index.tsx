@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { PageContent } from '../../../layouts/PageLayout/components'
-import { RouteManager, TitleManager, FiltersManager, LogsManager } from '../../../containers'
+import { FiltersManager, LogsManager, RouteManager, TitleManager } from '../../../containers'
 import { ListManager } from '../../../components/common/List/ListManager'
 import Header from './Header'
 import { getDefaultFilters } from '../../../helpers/logs'

@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Card, LoadingOverlay } from '../../../../components'
 import { EditFormContainer } from './EditFormContainer'
+
 interface EditProps {
     editUser: Function
     user: Object

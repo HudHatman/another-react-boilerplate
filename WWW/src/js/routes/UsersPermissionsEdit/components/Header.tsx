@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { PageHeader } from '../../../components'
-import { HomeIcon, PagesIcon, PermissionIcon } from '../../../components/icons'
-import { Permission } from '../../../../types.d'
+import { HomeIcon, PermissionIcon } from '../../../components/icons'
 
 interface HeaderProps {}
 

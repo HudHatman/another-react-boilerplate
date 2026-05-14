@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { NavigationHeader } from './NavigationHeader'
 import { NavigationLink } from './NavigationLink'
-import { AuthManager, RouteManager, AuthorizationManager } from '../../../containers'
+import { AuthManager, AuthorizationManager, RouteManager } from '../../../containers'
 import classNames from 'classnames/bind'
 import styles from '../../../../assets/scss/layout/_layout.scss'
 

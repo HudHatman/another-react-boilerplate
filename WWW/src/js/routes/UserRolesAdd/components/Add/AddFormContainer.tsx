@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { compose } from 'redux'
 import { AddForm as FormComponent } from './AddForm'
 import { reduxForm, SubmissionError } from 'redux-form'

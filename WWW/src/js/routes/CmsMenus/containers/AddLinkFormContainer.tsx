@@ -2,7 +2,7 @@ import * as React from 'react'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { AddLinkForm } from '../components/AddMenu/AddLinkForm'
-import { reduxForm, formValueSelector } from 'redux-form'
+import { formValueSelector, reduxForm } from 'redux-form'
 import { myGet } from '../../../modules/http'
 import { withRouter } from '../../../helpers/router'
 import _ from 'lodash'
@@ -19,7 +19,7 @@ class AddLinkFormContainerBase extends React.Component<null, null> {
     }
 
     componentDidMount() {
-        this.fetchIconsForSelect();
+        this.fetchIconsForSelect()
     }
 
     componentDidUpdate(prevProps: Readonly<null>, prevState: Readonly<null>, snapshot?: any) {

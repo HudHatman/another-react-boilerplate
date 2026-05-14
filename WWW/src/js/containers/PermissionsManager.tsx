@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { selectors as permissionsSelectors, actions as permissionsActions } from '../reducers/permissions'
+import { actions as permissionsActions, selectors as permissionsSelectors } from '../reducers/permissions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { AuthManager } from './AuthManager'

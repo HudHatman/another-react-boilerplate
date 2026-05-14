@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { PageContent } from '../../../layouts/PageLayout/components'
-import { Row, Col, Section, Tooltip, Button } from '../../../components'
+import { Button, Col, Row, Section, Tooltip } from '../../../components'
 import { createPresentationTab as _createPresentationTab, generateCode } from '../../../utils/tabs'
 import { TooltipFormContainer } from './TooltipFormContainer'
 import { ComponentsPageHeader } from '../../../components/common/ComponentsPageHeader'

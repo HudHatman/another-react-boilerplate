@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { FiltersCard } from '../../../components/common/FiltersCard'
-import { SetFilter, Filters, SetFilters, DeleteSavedFilter, SaveFilters, RestoreSavedFilter, ResetFilters, SavedFilters } from '../../../../types.d'
+import { DeleteSavedFilter, Filters, ResetFilters, RestoreSavedFilter, SavedFilters, SaveFilters, SetFilter, SetFilters } from '../../../../types.d'
 import { Badge, LoadingOverlay } from '../../../components'
 import { sortPermissionsByNameAscending } from '../../../helpers/permissions'
 import { sortRolesByNameAscending } from '../../../helpers/roles'

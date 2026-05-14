@@ -1,11 +1,12 @@
-import { reduxForm, formValueSelector, SubmissionError } from 'redux-form'
+import { formValueSelector, reduxForm, SubmissionError } from 'redux-form'
 import { connect } from 'react-redux'
 import RegisterForm from './RegisterForm'
 import { actions as authActions, selectors as authSelectors } from '../../../reducers/auth'
 import { withRouter } from '../../../helpers/router'
 import { compose } from 'redux'
-const { register } = authActions
 import { processAPIerrorResponseToFormErrors } from '../../../modules/http'
+
+const { register } = authActions
 
 const onSubmit = (values, dispatch, props) => {
     return dispatch(register(values)).then(

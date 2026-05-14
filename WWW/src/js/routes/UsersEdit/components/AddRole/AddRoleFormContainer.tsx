@@ -1,8 +1,7 @@
-import * as React from 'react'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { AddRoleForm as FormComponent } from './AddRoleForm'
-import { reduxForm, formValueSelector } from 'redux-form'
+import { formValueSelector, reduxForm } from 'redux-form'
 
 const validate = ({ role }) => {
     const errors = {}

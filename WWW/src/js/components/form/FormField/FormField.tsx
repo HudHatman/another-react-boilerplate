@@ -1,6 +1,6 @@
 import * as React from 'react'
 import classNames from 'classnames/bind'
-import { TextField, Select, Checkbox, TextArea, LoadingOverlay, Radio } from '../../index'
+import { Checkbox, LoadingOverlay, Radio, Select, TextArea, TextField } from '../../index'
 import styles from '../../../../assets/scss/_inputs.scss'
 import { OptionsFields } from '../Select/Select'
 

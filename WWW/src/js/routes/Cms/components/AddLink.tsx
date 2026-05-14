@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { PageContent } from '../../../layouts/PageLayout/components'
 import Manager from './Manager'
-import { RouteManager, AuthorizationManager } from '../../../containers'
+import { AuthorizationManager, RouteManager } from '../../../containers'
 import { Header } from './Header'
 import { AddLinkFormContainer } from '../containers/AddLinkFormContainer'
 import { formattedDateTime } from '../../../helpers/date-time'

@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { PageContent } from '../../../layouts/PageLayout/components'
-import { Row, Col, Section, Card } from '../../../components'
-import { Typography } from '../../../components'
+import { Card, Col, Row, Section, Typography } from '../../../components'
 import { ComponentsPageHeader } from '../../../components/common/ComponentsPageHeader'
 import classNames from 'classnames/bind'
 import styles from '../../../../assets/scss/components/_typography.scss'

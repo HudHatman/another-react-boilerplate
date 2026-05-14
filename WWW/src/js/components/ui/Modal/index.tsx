@@ -1,4 +1,4 @@
-import { ModalContainer, ModalHeader, ModalBody, ModalFooter } from './Modal'
+import { ModalBody, ModalContainer, ModalFooter, ModalHeader } from './Modal'
 import { ModalManager } from './Manager'
 import { ModalWrapper } from './Wrapper'
 

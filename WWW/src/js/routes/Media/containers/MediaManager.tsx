@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { selectors as commonSelectors, actions as commonActions } from '../../../reducers/files'
+import { actions as commonActions, selectors as commonSelectors } from '../../../reducers/files'
 import { connect } from 'react-redux'
 import { bindActionCreators, compose } from 'redux'
 import { AuthManager } from '../../../containers'

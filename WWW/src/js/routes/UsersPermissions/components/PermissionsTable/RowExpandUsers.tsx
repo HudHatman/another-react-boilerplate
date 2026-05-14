@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Col, Row, Table, Typography, Modal } from '../../../../components'
+import { Col, Modal, Row, Table, Typography } from '../../../../components'
 import { sortUsersByNameAscending } from '../../../../helpers/users'
 import ModalDeleteUserPermission from '../../../../components/common/ModalDeleteUserPermission'
 import { Permission, User } from '../../../../../types.d'

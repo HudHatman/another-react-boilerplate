@@ -1,7 +1,4 @@
 import * as React from 'react'
-import { NotificationsManager } from '../../containers/NotificationsManager'
-import { ModalConfirm } from './ModalConfirm'
-import { DeleteRole, Role, SetIsLoading } from '../../../types.d'
 import { Alert } from '../ui/Alert'
 import { AccessDisabledIcon } from '../icons'
 

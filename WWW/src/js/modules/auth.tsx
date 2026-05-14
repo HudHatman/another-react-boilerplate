@@ -1,10 +1,9 @@
 import * as React from 'react'
-import { selectors, actions as commonActions } from '../reducers/auth'
+import { actions as commonActions, selectors } from '../reducers/auth'
 import { bindActionCreators, compose } from 'redux'
 import { connect } from 'react-redux'
 import { withRouter } from '../helpers/router'
 import { LocalStorage } from './database'
-import createReactClass from 'create-react-class'
 import { AuthorizationManager } from '../containers'
 import Page401 from '../components/common/Page401/Index'
 

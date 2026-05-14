@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { PageContent } from '../../../layouts/PageLayout/components'
-import { Row, Col, Section, Progress } from '../../../components'
+import { Col, Progress, Row, Section } from '../../../components'
 import { createPresentationTab as _createPresentationTab, generateCode } from '../../../utils/tabs'
 import { ProgressFormContainer } from './ProgressFormContainer'
 import { ComponentsPageHeader } from '../../../components/common/ComponentsPageHeader'

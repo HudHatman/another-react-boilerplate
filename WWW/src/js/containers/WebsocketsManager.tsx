@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { bindActionCreators, compose } from 'redux'
 import { connect } from 'react-redux'
-import { selectors as authSelectors, actions as authActions } from '../reducers/auth'
+import { actions as authActions, selectors as authSelectors } from '../reducers/auth'
 import Echo from 'laravel-echo'
 import Pusher from 'pusher-js'
 import { withRouter } from '../helpers/router'

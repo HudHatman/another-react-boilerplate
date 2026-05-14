@@ -1,8 +1,8 @@
 import * as React from 'react'
-import { Dropdown, PageHeader, Button } from '../../../components'
+import { PageHeader } from '../../../components'
 import { FaHome as HomeIcon } from 'react-icons/fa'
 import { AuthorizationManager } from '../../../containers'
-import { MenuIcon, PagesIcon } from '../../../components/icons'
+import { MenuIcon } from '../../../components/icons'
 import { ButtonAdd } from '../../../components/common/ButtonAdd'
 
 interface HeaderProps {

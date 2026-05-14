@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { ProgressForm as FormComponent } from './ProgressForm'

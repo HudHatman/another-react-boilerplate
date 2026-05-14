@@ -4,6 +4,7 @@ import styles from '../../../../assets/scss/routes/page401.scss'
 import classNames from 'classnames/bind'
 import { Alert } from '../../ui/Alert'
 import { AccessDisabledIcon } from '../../icons'
+
 const cx = classNames.bind(styles)
 export class Page401 extends React.Component<null, null> {
     render() {

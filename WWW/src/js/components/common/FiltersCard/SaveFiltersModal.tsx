@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { ModalContainer, ModalHeader, ModalBody } from '../../ui/Modal'
+import { ModalBody, ModalContainer, ModalHeader } from '../../ui/Modal'
 import { SaveFiltersFormContainer } from './SaveFiltersFormContainer'
 
 interface SaveFiltersModalProps {}

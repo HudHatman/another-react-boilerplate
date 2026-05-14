@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { PageContent } from '../../../layouts/PageLayout/components'
 import Manager from './Manager'
-import { RouteManager, AuthorizationManager } from '../../../containers'
+import { AuthorizationManager, RouteManager } from '../../../containers'
 import { Header } from './Header'
 import { AddLinkFormContainer } from '../containers/AddLinkFormContainer'
 
@@ -42,10 +42,10 @@ export class EditLinkView extends React.Component {
                                                             currentNode.link?.document_id > 0
                                                                 ? 'document'
                                                                 : currentNode.link?.category_id > 0
-                                                                ? 'category'
-                                                                : currentNode.link?.file_id > 0
-                                                                ? 'file'
-                                                                : 'manually',
+                                                                  ? 'category'
+                                                                  : currentNode.link?.file_id > 0
+                                                                    ? 'file'
+                                                                    : 'manually',
                                                     }}
                                                     save={editLink}
                                                     setIsLoading={setIsLoading}

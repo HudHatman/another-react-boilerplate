@@ -10,7 +10,7 @@ interface AccordionItemProps {
     name: string
 }
 
-function Item({children, name}: AccordionItemProps) {
+function Item({ children, name }: AccordionItemProps) {
     return (
         <AppContext.Consumer>
             {({ registerItem, isOpened, open, close, size, type, closeIcon }) => {

@@ -1,5 +1,3 @@
-import * as React from 'react'
-
 // constants
 export const SET_FILTER = 'filters::set-filter'
 export const SET_FILTERS = 'filters::set-filters'

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Alert, Button, Card, LoadingOverlay, Table, Tooltip, Typography } from '../../../../components'
-import { LinkIcon, PermissionIcon, PublishIcon, UnpublishIcon } from '../../../../components/icons'
+import { LinkIcon, PublishIcon, UnpublishIcon } from '../../../../components/icons'
 import { formatDateTime } from '../../../../helpers/date-time'
 import styles from '../../../../../assets/scss/routes/cms.scss'
 import classNames from 'classnames/bind'
@@ -10,7 +10,6 @@ import { ModalManager } from '../../../../components/ui/Modal'
 import { RouteManager } from '../../../../containers'
 import { ButtonDelete } from '../../../../components/common/ButtonDelete'
 import { ButtonEdit } from '../../../../components/common/ButtonEdit'
-import RowExpandRoles from '../../../Users/components/UsersTable/RowExpandRoles'
 import RowLinks from './RowLinks'
 
 const cx = classNames.bind(styles)

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { PageContent } from '../../../layouts/PageLayout/components'
-import { Row, Col, Section, Badge } from '../../../components'
+import { Badge, Col, Row, Section } from '../../../components'
 import { createPresentationTab as _createPresentationTab, generateCode } from '../../../utils/tabs'
 import { BadgeFormContainer } from './BadgeFormContainer'
 import { ComponentsPageHeader } from '../../../components/common/ComponentsPageHeader'

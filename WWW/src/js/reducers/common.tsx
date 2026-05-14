@@ -1,5 +1,3 @@
-import * as React from 'react'
-
 // constants
 export const CONNECTION_ERROR_MODAL_VISIBLE = 'common::connection_error_modal_visible'
 export const SET_LAYOUT_OPTION = 'common::set-layout-option'

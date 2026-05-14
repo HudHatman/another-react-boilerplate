@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Outlet } from 'react-router-dom'
 import { Scrollbars } from 'react-custom-scrollbars'
-import { Sidebar, SidebarHeader, Navigation, Container } from './components'
+import { Container, Navigation, Sidebar, SidebarHeader } from './components'
 import { AuthManager, RouteManager } from '../../containers'
 import classNames from 'classnames/bind'
 import config from '../../config'

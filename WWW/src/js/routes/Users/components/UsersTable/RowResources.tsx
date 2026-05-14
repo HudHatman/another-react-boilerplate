@@ -3,7 +3,7 @@ import { Button, Tooltip } from '../../../../components'
 import { FileIcon, PermissionIcon, RoleIcon } from '../../../../components/icons'
 import { DeleteUserAvatar, ExpandRow, SetIsLoading, User } from '../../../../../types.d'
 import RowResourcesAvatarDropdown from './RowResourcesAvatarDropdown'
-import { RouteManager, AuthorizationManager } from '../../../../containers'
+import { AuthorizationManager, RouteManager } from '../../../../containers'
 
 interface RowResourcesProps {
     user: User

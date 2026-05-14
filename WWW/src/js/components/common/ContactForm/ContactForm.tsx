@@ -1,13 +1,11 @@
 import * as React from 'react'
 import { Field } from 'redux-form'
-import { Button, FormField } from '../../index'
+import { Alert, Button, Card, FormField } from '../../index'
 import classNames from 'classnames/bind'
 import styles from '../../../../assets/scss/_pages.scss'
 import { apiURL } from '../../../helpers/api'
 import { BiHelpCircle } from 'react-icons/bi'
-import { Card } from '../../index'
 import { LoadingOverlay } from '../../ui/LoadingOverlay'
-import { Alert } from '../../index'
 
 const cx = classNames.bind(styles)
 

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import classNames from 'classnames/bind'
-import { AiOutlineRight, AiOutlineDown } from 'react-icons/ai'
+import { AiOutlineDown, AiOutlineRight } from 'react-icons/ai'
 import styles from '../../../../assets/scss/layout/_layout.scss'
 import _ from 'lodash'
 import { NavigationItems } from './NavigationItems'

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styles from '../../../../assets/scss/components/_list_manager.scss'
 import classNames from 'classnames/bind'
-import { Button, FormField, Col, Row, Label, Badge } from '../../../components'
+import { Badge, Button, Col, FormField, Label, Row } from '../../../components'
 import { ResetIcon } from '../../icons'
 import SimpleModelCell from '../SimpleModelCell'
 
