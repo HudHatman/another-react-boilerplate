@@ -24,7 +24,14 @@ class ModalContainer extends React.Component<ModalContainerProps, null> {
         if (!visible) return null
 
         return createPortal(
-            <div className="modal fade show bg-warning" style={{display: 'block'}} id="mojPopup" tabIndex="-1" aria-labelledby="mojPopupLabel" aria-hidden="false">
+            <div
+                className="modal fade show"
+                style={{ display: 'block' }}
+                id="mojPopup"
+                tabIndex="-1"
+                aria-labelledby="mojPopupLabel"
+                aria-hidden="false"
+            >
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">{children}</div>
                 </div>

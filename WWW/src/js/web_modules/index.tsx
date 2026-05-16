@@ -15,7 +15,6 @@ const App = ({ children }) => {
         const dataString = container.getAttribute('data-modals')
         if (dataString) {
             modals = JSON.parse(dataString)
-            console.log(modals)
         }
     } catch (e) {}
 
