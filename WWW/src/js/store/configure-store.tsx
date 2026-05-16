@@ -2,6 +2,7 @@ import { applyMiddleware, combineReducers, compose, createStore } from 'redux'
 import { thunk } from 'redux-thunk'
 import { reducer as formReducer } from 'redux-form'
 import * as reducers from '../reducers'
+import * as React from 'react'
 
 const reducer = combineReducers({
     ...reducers,
@@ -20,5 +21,6 @@ function configureStoreDev(initialState) {
 }
 
 const configureStore = process.env.NODE_ENV === 'production' ? configureStoreProd : configureStoreDev
+export const store = configureStore({})
 
 export default configureStore

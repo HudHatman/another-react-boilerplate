@@ -1,9 +1,16 @@
-// production config
-const { merge } = require('webpack-merge')
 const { resolve } = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const commonConfig = {
+module.exports = {
+    mode: 'development',
+    entry: ['@babel/polyfill', './js/web_modules/index.tsx'],
+    devtool: 'source-map',
+    output: {
+        //filename: 'js/bundle.[fullhash].min.js',
+        filename: 'js/web_modules.min.js',
+        path: resolve(__dirname, '../../../dist/'),
+        publicPath: '/',
+    },
+    plugins: [],
     resolve: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
     },
@@ -71,21 +78,7 @@ const commonConfig = {
             },
         ],
     },
-    plugins: [new HtmlWebpackPlugin()],
     performance: {
         hints: false,
     },
 }
-
-module.exports = merge(commonConfig, {
-    mode: 'development',
-    entry: ['@babel/polyfill', './js/web_modules/index.tsx'],
-    devtool: 'source-map',
-    output: {
-        //filename: 'js/bundle.[fullhash].min.js',
-        filename: 'js/web_modules.min.js',
-        path: resolve(__dirname, '../../../dist/'),
-        publicPath: '/',
-    },
-    plugins: [],
-})
