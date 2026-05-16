@@ -4,6 +4,7 @@ import { bindActionCreators, compose } from 'redux'
 import { connect } from 'react-redux'
 import { withRouter } from '../helpers/router'
 import { LocalStorage } from './database'
+import createReactClass from 'create-react-class'
 import { AuthorizationManager } from '../containers'
 import Page401 from '../components/common/Page401/Index'
 
@@ -86,17 +87,23 @@ class UserIsAuthenticatedRouteBase extends React.Component<UserIsAuthenticatedRo
             return null
         }
 
-        return (
-            <AuthorizationManager>
-                {({ canByPermission }) => (
-                    <>
-                        {!!permission && canByPermission(permission) && children}
-                        {!!permission && !canByPermission(permission) && <Page401 />}
-                        {!permission && children}
-                    </>
-                )}
-            </AuthorizationManager>
-        )
+        const Component = createReactClass({
+            render: () => {
+                return (
+                    <AuthorizationManager>
+                        {({ canByPermission }) => (
+                            <>
+                                {!!permission && canByPermission(permission) && children}
+                                {!!permission && !canByPermission(permission) && <Page401 />}
+                                {!permission && children}
+                            </>
+                        )}
+                    </AuthorizationManager>
+                )
+            },
+        })
+
+        return <Component />
     }
 }
 

@@ -11,7 +11,6 @@
         <meta name="robots" content="{{\Illuminate\Support\Arr::get($meta, 'robots')}}">
     @endif
     <link rel="stylesheet" href="{{ asset('build/assets/app.css') }}">
-    <script src="{{ asset('build/assets/app.js') }}" defer></script>
 </head>
 <body class="d-flex flex-column h-100">
 @guest
@@ -39,5 +38,8 @@
     @yield('content')
 </main>
 @include('components.footer')
+<div id="web-module-root-modal"></div>
+<script src="{{ asset('build/assets/app.js') }}" defer></script>
+<script src="{{ asset('js/web_modules.min.js') }}" defer></script>
 </body>
 </html>

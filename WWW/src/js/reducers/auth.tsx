@@ -1,6 +1,30 @@
 import { http, myPost, setAuthToken } from '../modules/http'
 import { LocalStorage } from '../modules/database'
 
+const getCachedLoginData = () => {
+    return LocalStorage.queryAll('LoginFormContainer', { query: { ID: 1 } })[0]
+}
+
+const getCachedUser = () => {
+    const loginData = getCachedLoginData()
+
+    if (!loginData?.token) {
+        return null
+    }
+
+    setAuthToken(loginData.token)
+
+    if (!loginData.user) {
+        return null
+    }
+
+    try {
+        return typeof loginData.user === 'string' ? JSON.parse(loginData.user) : loginData.user
+    } catch (e) {
+        return null
+    }
+}
+
 // ------------------------------------
 // Constants
 // ------------------------------------
@@ -83,6 +107,7 @@ const login = (email, password) => (dispatch) => {
 const loginWithToken = (email, token) => (dispatch, state) => {
     return new Promise((resolve, reject) => {
         if (state()['auth']['loginWithTokenRequestInProgress']) {
+            reject()
             return
         }
 
@@ -111,14 +136,14 @@ const loginWithToken = (email, token) => (dispatch, state) => {
                     })
                     LocalStorage.commit()
 
+                    dispatch(setLoginWithTokenRequestInProgress(false))
                     resolve(user)
-                    dispatch(setLoginWithTokenRequestInProgress(true))
                 },
             )
             .catch(({ data: { message = '' } = {} }) => {
                 dispatch(setLoginError(message))
-                reject()
                 dispatch(setLoginWithTokenRequestInProgress(false))
+                reject()
             })
     })
 }
@@ -129,6 +154,15 @@ const logoff = () => (dispatch) => {
             .then(() => {
                 dispatch(loggedOff())
                 setAuthToken('')
+
+                LocalStorage.update('LoginFormContainer', { ID: 1 }, (row) => {
+                    row.email = ''
+                    row.token = ''
+                    row.user = ''
+                    return row
+                })
+                LocalStorage.commit()
+
                 resolve(true)
             })
             .catch(() => {
@@ -222,13 +256,17 @@ const ACTION_HANDLERS = {
 // Reducer
 // ------------------------------------
 
-const getInitialState = () => ({
-    isLoggedIn: false,
-    user: {},
-    loginError: '',
-    isLoading: false,
-    loginWithTokenRequestInProgress: false,
-})
+const getInitialState = () => {
+    const cachedUser = getCachedUser()
+
+    return {
+        isLoggedIn: !!cachedUser,
+        user: cachedUser || {},
+        loginError: '',
+        isLoading: false,
+        loginWithTokenRequestInProgress: false,
+    }
+}
 
 export default function userReducer(state = getInitialState(), action) {
     const handler = ACTION_HANDLERS[action.type]
