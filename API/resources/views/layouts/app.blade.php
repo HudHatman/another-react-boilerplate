@@ -38,7 +38,11 @@
     @yield('content')
 </main>
 @include('components.footer')
-<div id="web-module-root-modal"></div>
+<div id="web-module-root-modal" data-modals='<?php echo json_encode([
+                                                         ['content' => 'test 1'],
+                                                         ['content' => 'test 2']
+                                                     ])
+                                                 ?>'></div>
 <script src="{{ asset('build/assets/app.js') }}" defer></script>
 <script src="{{ asset('js/web_modules.min.js') }}" defer></script>
 </body>

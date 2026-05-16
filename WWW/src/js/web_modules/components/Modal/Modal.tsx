@@ -24,16 +24,9 @@ class ModalContainer extends React.Component<ModalContainerProps, null> {
         if (!visible) return null
 
         return createPortal(
-            <div className={cx('component-modal-container')}>
-                <div
-                    className={cx('component-modal-container__modal', {
-                        [`animation--${animation}`]: animation,
-                        [`component-modal-container__modal--color-${color}`]: color,
-                        [`component-modal-container__modal--size-${size}`]: size,
-                        [`component-modal-container__modal--placement-${placement}`]: placement,
-                    })}
-                >
-                    <div className={cx('component-modal-container__modal__content')}>{children}</div>
+            <div className="modal fade show bg-warning" style={{display: 'block'}} id="mojPopup" tabIndex="-1" aria-labelledby="mojPopupLabel" aria-hidden="false">
+                <div className="modal-dialog modal-dialog-centered">
+                    <div className="modal-content">{children}</div>
                 </div>
             </div>,
             document.body,
@@ -51,9 +44,8 @@ class ModalBody extends React.Component<ModalBodyProps, null> {
         const { children, close } = this.props
 
         return (
-            <div className={cx('component-modal-container__modal__content__body')}>
-                {_.isFunction(children) && children({ close })}
-                {!_.isFunction(children) && children}
+            <div className={'modal-body'}>
+                {children}
             </div>
         )
     }
@@ -70,15 +62,18 @@ class ModalHeader extends React.Component<ModalHeaderProps, null> {
         const { children, closeIcon, close } = this.props
 
         return (
-            <div className={cx('component-modal-container__modal__content__title')}>
-                <h2 className={cx('component-modal-container__modal__content__title__title')}>
-                    {_.isFunction(children) && children({ close })}
-                    {!_.isFunction(children) && children}
-                </h2>
+            <div className="modal-header">
+                <h5 className="modal-title" id="mojPopupLabel">
+                    {children}
+                </h5>
                 {closeIcon && (
-                    <div className={cx('component-modal-container__modal__content__title__close-icon')} onClick={() => close()}>
-                        <CloseIcon />
-                    </div>
+                    <button
+                        type="button"
+                        className="btn-close"
+                        onClick={() => {
+                            close()
+                        }}
+                    ></button>
                 )}
             </div>
         )
@@ -95,9 +90,13 @@ class ModalFooter extends React.Component<ModalFooterProps, null> {
         const { children, close } = this.props
 
         return (
-            <div className={cx('component-modal-container__modal__content__footer')}>
-                {_.isFunction(children) && children({ close })}
-                {!_.isFunction(children) && children}
+            <div className="modal-header-footer d-flex justify-content-end p-3 border-top">
+                <button type="button" className="btn btn-secondary me-2" data-bs-dismiss="modal">
+                    Zamknij
+                </button>
+                <button type="button" className="btn btn-success">
+                    Zapisz zmiany
+                </button>
             </div>
         )
     }

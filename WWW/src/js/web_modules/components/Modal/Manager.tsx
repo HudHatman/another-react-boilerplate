@@ -11,8 +11,11 @@ class ModalManager extends React.Component<ModalManagerProps, null> {
     }
     modals = {}
 
-    registerModal(name, modal) {
+    registerModal(name, modal, show) {
         this.modals[name] = modal
+        if (show) {
+            this.state.openedModal = modal;
+        }
     }
 
     openModal(name) {

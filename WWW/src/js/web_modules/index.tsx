@@ -1,36 +1,47 @@
 import * as React from 'react'
 import { createRoot } from 'react-dom/client'
-import { ModalManager } from './components/Modal'
-import Modal from './components/Modal'
+import { ModalManager, ModalBody, ModalContainer, ModalWrapper, ModalHeader } from './components/Modal'
+import { useEffect } from 'react'
 
 const container = document.getElementById('web-module-root-modal')
 const root = createRoot(container!) // createRoot(container!) if you use TypeScript
+export const AppContext = React.createContext({})
 
-const AutoModal = ({close}) => {
-    return (
-        <Modal.Container visible={true} color={'danger'} close={close}>
-            <Modal.Body>test</Modal.Body>
-        </Modal.Container>
-    )
-}
 const App = ({ children }) => {
+    let modals = [];
+    const [currentModal, setCurrentModal] = React.useState(0)
+
+    try {
+        const dataString = container.getAttribute('data-modals')
+        if (dataString) {
+            modals = JSON.parse(dataString)
+            console.log(modals)
+        }
+    } catch (e) {}
+
     return (
-        <ModalManager>
-            {({ registerModal, closeModal }) => {
-                const modalName = 'on-page-show-modal'
-                registerModal(modalName, <AutoModal close={closeModal} />)
-                return <p>Modal Registered</p>
-            }}
-        </ModalManager>
+        <>
+            {!!modals[currentModal]?.content && (
+                <ModalContainer visible={true}>
+                    <ModalHeader
+                        closeIcon
+                        close={() => {
+                            setCurrentModal(currentModal + 1)
+                        }}
+                    />
+                    <ModalBody>{modals[currentModal]?.content}</ModalBody>
+                </ModalContainer>
+            )}
+
+            {children}
+        </>
     )
 }
 const renderComponent = (Component) => {
     root.render(
-        <div id="react-content">
-            {/*<Provider store={store}>*/}
+        <AppContext.Provider value={{}}>
             <Component />
-            {/*</Provider>*/}
-        </div>,
+        </AppContext.Provider>,
     )
 }
 
