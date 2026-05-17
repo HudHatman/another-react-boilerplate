@@ -5,6 +5,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
     resolve: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        alias: {
+        },
     },
     context: resolve(__dirname, '../../src'),
     module: {
@@ -66,6 +68,12 @@ module.exports = {
                 type: 'asset/resource',
                 generator: {
                     filename: 'icons/[hash][ext][query]',
+                },
+            },
+            {
+                test: /\.m?jsx?$/, // Łapie pliki .js, .jsx, .mjs, .mjsx
+                resolve: {
+                    fullySpecified: false, // Wyłącza wymóg podawania rozszerzeń (jak .js) w importach
                 },
             },
         ],

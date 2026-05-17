@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { App } from './js/routes'
-import { store } from './js/store/configure-store'
+import { configureStore } from './js/store/configure-store'
 import { Provider } from 'react-redux'
 import { createRoot } from 'react-dom/client'
 import 'typeface-spectral'
@@ -12,6 +12,7 @@ const container = document.getElementById('root')
 const root = createRoot(container) // createRoot(container!) if you use TypeScript
 
 export const AppContext = React.createContext({})
+export const store = configureStore({});
 
 const renderComponent = (Component) => {
     root.render(

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { actions as commonActions } from '../reducers/common'
-import { store } from '../store/configure-store'
+import { store } from '../../index'
 import config from '../config'
 import _ from 'lodash'
 

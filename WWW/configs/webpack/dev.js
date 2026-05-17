@@ -13,8 +13,7 @@ module.exports = merge(commonConfig, {
         './index.tsx', // the entry point of our app
     ],
     devtool: 'cheap-module-source-map',
-    plugins: [
-    ],
+    plugins: [],
     output: {
         filename: 'js/bundle.[fullhash].min.js',
         path: resolve(__dirname, '../../../dist/'),
