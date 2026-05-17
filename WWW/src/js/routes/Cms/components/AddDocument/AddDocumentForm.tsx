@@ -217,21 +217,27 @@ const AddDocumentForm = ({
                                 <Tabs.Content>
                                     <SlotFillProvider>
                                         <BlockEditorProvider value={blocks} onInput={setBlocks}>
-                                            <div className="playground__sidebar">
-                                                <BlockInspector />
-                                            </div>
-                                            <div className="playground__content">
-                                                <BlockTools>
-                                                    <div className="editor-styles-wrapper">
-                                                        <BlockEditorKeyboardShortcuts />
-                                                        <WritingFlow>
-                                                            <ObserveTyping>
-                                                                <BlockList />
-                                                            </ObserveTyping>
-                                                        </WritingFlow>
+                                            <Row>
+                                                <Col xs={9} md={9} lg={9}>
+                                                    <div className="playground__content">
+                                                        <BlockTools>
+                                                            <div className="editor-styles-wrapper">
+                                                                <BlockEditorKeyboardShortcuts />
+                                                                <WritingFlow>
+                                                                    <ObserveTyping>
+                                                                        <BlockList />
+                                                                    </ObserveTyping>
+                                                                </WritingFlow>
+                                                            </div>
+                                                        </BlockTools>
                                                     </div>
-                                                </BlockTools>
-                                            </div>
+                                                </Col>
+                                                <Col xs={3} md={3} lg={3}>
+                                                    <div className="playground__sidebar">
+                                                        <BlockInspector />
+                                                    </div>
+                                                </Col>
+                                            </Row>
                                             <Popover.Slot />
                                         </BlockEditorProvider>
                                     </SlotFillProvider>
