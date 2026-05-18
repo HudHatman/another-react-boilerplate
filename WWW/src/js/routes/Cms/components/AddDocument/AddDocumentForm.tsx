@@ -21,6 +21,7 @@ import { registerCoreBlocks } from '@wordpress/block-library'
 import './loadGutenbergDependencies'
 // Additional imports and setups
 import { dispatch, select } from '@wordpress/data'
+import { FORM_NAME } from '../../containers/AddDocumentFormContainer'
 
 function setGlobals() {
     // set global djwp object
@@ -40,14 +41,12 @@ const AddDocumentForm = ({
     categories,
     currentNode,
     change,
-    initialValues: {
-        tree: { id, tree_url_is_editable, tree_publishing_is_editable },
-    },
+    initialValues,
     formValues: { tree: formValues },
     isLoading,
     menus,
 }) => {
-    const [blocks, setBlocks] = React.useState([
+    const [blocks, setBlocks] = React.useState(initialValues?.document?.document_content ? JSON.parse(initialValues?.document?.document_content) : [
         {
             clientId: '4',
             isValid: true,
@@ -61,16 +60,10 @@ const AddDocumentForm = ({
     ])
     const dispatch = useDispatch()
 
-    const saveBlocks = () => {
-        dispatch('core/block-editor').resetBlocks(blocks)
-        console.log('Blocks saved to Gutenberg store:', blocks)
-    }
-
-    // Callback function when the editor is fully loaded
     const onEditorLoaded = () => {
+        setBlocks(blocks)
         dispatch('core/block-editor').resetBlocks(blocks)
-        console.log('Editor is fully loaded and ready.', djwp.data.select('core/block-editor').getBlocks())
-        // Additional actions after the editor is loaded can be called here
+        console.log('Editor is fully loaded and ready.', select('core/block-editor').getBlocks())
     }
 
     // useEffect to trigger the onEditorLoaded callback
@@ -112,7 +105,7 @@ const AddDocumentForm = ({
                                                         type="text"
                                                         component={FormField}
                                                     />
-                                                    {!!tree_url_is_editable && (
+                                                    {!!initialValues?.tree?.tree_url_is_editable && (
                                                         <Field
                                                             name="document.document_url"
                                                             label="URL"
@@ -136,20 +129,13 @@ const AddDocumentForm = ({
                                                                 change(
                                                                     'document.document_url',
                                                                     generateUrl(
-                                                                        id
+                                                                        initialValues?.tree?.id
                                                                             ? currentNode.parent.category.category_url
                                                                             : currentNode.category.category_url,
                                                                         value,
                                                                     ),
                                                                 )
                                                             }}
-                                                        />
-                                                        <Field
-                                                            name="document.document_content"
-                                                            label="Content"
-                                                            placeholder={'Content'}
-                                                            type="textarea"
-                                                            component={FormField}
                                                         />
                                                         <Field
                                                             name="document.menu_category_id"
@@ -174,7 +160,7 @@ const AddDocumentForm = ({
                                                             component={FormField}
                                                         />
                                                     </Card>
-                                                    {!!tree_publishing_is_editable && (
+                                                    {!!initialValues?.tree?.tree_publishing_is_editable && (
                                                         <Card
                                                             header={
                                                                 <h1>
@@ -215,8 +201,17 @@ const AddDocumentForm = ({
                             <Tabs.Tab name="content">
                                 <Tabs.Trigger>Content</Tabs.Trigger>
                                 <Tabs.Content>
+                                    <Field name="document.document_content" type="hidden" component={FormField} inputOnly />
+                                    <Field name="document.document_content_blocks" type="hidden" component={FormField} inputOnly />
                                     <SlotFillProvider>
-                                        <BlockEditorProvider value={blocks} onInput={setBlocks}>
+                                        <BlockEditorProvider
+                                            value={blocks}
+                                            onInput={(blocks) => {
+                                                setBlocks(blocks)
+                                                change('document.document_content', serialize(blocks))
+                                                change('document.document_content_blocks', JSON.stringify(blocks))
+                                            }}
+                                        >
                                             <Row>
                                                 <Col xs={9} md={9} lg={9}>
                                                     <div className="playground__content">
