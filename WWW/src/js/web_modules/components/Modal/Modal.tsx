@@ -28,7 +28,7 @@ class ModalContainer extends React.Component<ModalContainerProps, null> {
                 data-bs-backdrop="static"
             >
                 <div className="modal-dialog modal-dialog-centered">
-                    <div className="modal-content">{children}</div>
+                    <div className="modal-content bg-info">{children}</div>
                 </div>
             </div>,
             document.body,
