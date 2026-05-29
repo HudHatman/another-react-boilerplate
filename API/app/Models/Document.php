@@ -18,6 +18,7 @@ class Document extends Model
         'document_meta_description',
         'document_meta_robots',
         'document_content',
+        'document_content_blocks',
         'menu_category_id'
     ];
 

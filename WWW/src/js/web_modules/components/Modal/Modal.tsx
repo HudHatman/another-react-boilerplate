@@ -1,11 +1,5 @@
 import * as React from 'react'
 import { createPortal } from 'react-dom'
-import classNames from 'classnames/bind'
-import { FaWindowClose as CloseIcon } from 'react-icons/fa'
-import _ from 'lodash'
-import styles from '../../../../assets/scss/components/_modal.scss'
-
-const cx = classNames.bind(styles)
 
 interface ModalContainerProps {
     children: any
@@ -25,11 +19,11 @@ class ModalContainer extends React.Component<ModalContainerProps, null> {
 
         return createPortal(
             <div
-                className="modal-backdrop fade show modal-xl"
+                className="modal fade show modal-xl"
                 style={{ display: 'block' }}
-                id="mojPopup"
+                id="mainPopup"
                 tabIndex="-1"
-                aria-labelledby="mojPopupLabel"
+                aria-labelledby="mainPopupLabel"
                 aria-hidden="false"
                 data-bs-backdrop="static"
             >
@@ -51,11 +45,7 @@ class ModalBody extends React.Component<ModalBodyProps, null> {
     render() {
         const { children, close } = this.props
 
-        return (
-            <div className={'modal-body'}>
-                {children}
-            </div>
-        )
+        return <div className={'modal-body'}>{children}</div>
     }
 }
 

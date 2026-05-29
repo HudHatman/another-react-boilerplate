@@ -19,9 +19,7 @@ import { serialize } from '@wordpress/blocks'
 import '@wordpress/format-library'
 import { registerCoreBlocks } from '@wordpress/block-library'
 import './loadGutenbergDependencies'
-// Additional imports and setups
 import { dispatch, select } from '@wordpress/data'
-import { FORM_NAME } from '../../containers/AddDocumentFormContainer'
 
 function setGlobals() {
     // set global djwp object
@@ -46,7 +44,7 @@ const AddDocumentForm = ({
     isLoading,
     menus,
 }) => {
-    const [blocks, setBlocks] = React.useState(initialValues?.document?.document_content ? JSON.parse(initialValues?.document?.document_content) : [
+    const _default = [
         {
             clientId: '4',
             isValid: true,
@@ -57,11 +55,15 @@ const AddDocumentForm = ({
                 dropCap: false,
             },
         },
-    ])
+    ]
+    const [blocks, setBlocks] = React.useState(_default)
     const dispatch = useDispatch()
 
     const onEditorLoaded = () => {
-        setBlocks(blocks)
+        if (initialValues?.document?.document_content_blocks)
+            setBlocks(
+                JSON.parse(initialValues?.document?.document_content_blocks)
+            )
         dispatch('core/block-editor').resetBlocks(blocks)
         console.log('Editor is fully loaded and ready.', select('core/block-editor').getBlocks())
     }

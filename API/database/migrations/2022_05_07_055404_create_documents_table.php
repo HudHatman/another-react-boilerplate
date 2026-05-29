@@ -18,6 +18,7 @@ class CreateDocumentsTable extends Migration
             $table->unsignedBigInteger('tree_id');
             $table->string('document_name', 256);
             $table->text('document_content')->nullable()->default(null);
+            $table->text('document_content_blocks')->nullable()->default(null);
             $table->string('document_url', 512)->nullable()->default(null);
             $table->string('document_meta_title', 256)->nullable()->default(null);
             $table->string('document_meta_keywords', 512)->nullable()->default(null);

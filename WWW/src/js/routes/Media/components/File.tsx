@@ -116,7 +116,7 @@ export const FileView = ({
                 <Modal.Header
                     closeIcon
                     close={() => {
-                        this.setState({ detailsModalVisible: false })
+                        setDetailsModalVisible(false)
                     }}
                 >
                     File details
