@@ -7,7 +7,7 @@
             @include('components.navbar_menu', ['menu' => $menu, 'slug' => $slug ?? NULL])
             @if (isset($actions) && is_array($actions))
                 @foreach($actions as $action)
-                    <a class="btn {{\Illuminate\Support\Arr::get($action, 'color') === "warning" ? "btn-warning" : "btn-outline-light me-2"}}"
+                    <a class="btn {{\Illuminate\Support\Arr::get($action, 'color') === "warning" ? "btn-primary" : "btn-outline-light me-2"}}"
                        href="{{$action['href']}}">{{$action['label']}}</a>
                 @endforeach
             @endif

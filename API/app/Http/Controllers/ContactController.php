@@ -21,7 +21,7 @@ class ContactController extends Controller
             'message_email' => $request->get('email'),
             'message_body' => $request->get('message'),
         ], function ($message) use ($request) {
-            $message->to('ja@baniowski.pro', 'Michał Baniowski')->subject('Email from another-react-boilerplate.baniowski.pro');
+            $message->to('baniczek@gmail.com', 'Michał Baniowski')->subject('Email from hudhatman.pl');
             $message->from($request->get('email'));
         });
 

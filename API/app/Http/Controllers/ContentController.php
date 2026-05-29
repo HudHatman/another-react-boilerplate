@@ -432,7 +432,7 @@ class ContentController extends Controller
         ], function ($message) use ($request) {
             $message
                 ->to('duchemprzytomny@gmail.com', 'Michał Baniowski')
-                ->subject('Email from przytomny.pl')
+                ->subject('Email from hudhatman.pl')
                 ->from($request->post('email'));
         });
 
