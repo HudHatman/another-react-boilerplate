@@ -7,7 +7,7 @@ const commonConfig = require('./common')
 module.exports = merge(commonConfig, {
     mode: 'production',
     entry: ['@babel/polyfill', './index.tsx'],
-    devtool: 'source-map',
+    devtool: 'cheap-module-source-map',
     output: {
         //filename: 'js/bundle.[fullhash].min.js',
         filename: 'js/bundle.min.js',
