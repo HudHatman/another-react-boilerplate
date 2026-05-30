@@ -37,7 +37,7 @@ const AddDocumentFormContainer = compose(
     withRouter,
     connect(
         (state) => {
-            const formValues = selector(state, 'tree.tree_is_published', 'tree.tree_published_from', 'tree.tree_published_to')
+            const formValues = selector(state, 'tree.tree_is_published', 'tree.tree_published_from', 'tree.tree_published_to', 'document.document_content', 'document.document_content_blocks')
             return {
                 formValues,
             }
@@ -66,8 +66,6 @@ const AddDocumentFormContainer = compose(
                 },
             )
         },
-        enableReinitialize: true,
-        destroyOnUnmount: false,
     }),
 )(AddDocumentFormContainerBase)
 

@@ -40,9 +40,10 @@ const AddDocumentForm = ({
     currentNode,
     change,
     initialValues,
-    formValues: { tree: formValues },
+    formValues,
     isLoading,
     menus,
+    ...rest
 }) => {
     const _default = [
         {
@@ -60,12 +61,10 @@ const AddDocumentForm = ({
     const dispatch = useDispatch()
 
     const onEditorLoaded = () => {
-        if (initialValues?.document?.document_content_blocks)
-            setBlocks(
-                JSON.parse(initialValues?.document?.document_content_blocks)
-            )
-        dispatch('core/block-editor').resetBlocks(blocks)
-        console.log('Editor is fully loaded and ready.', select('core/block-editor').getBlocks())
+        if (initialValues?.document?.document_content_blocks) {
+            setBlocks(JSON.parse(initialValues?.document?.document_content_blocks))
+            dispatch('core/block-editor').resetBlocks(JSON.parse(initialValues?.document?.document_content_blocks))
+        }
     }
 
     // useEffect to trigger the onEditorLoaded callback
